@@ -11,6 +11,16 @@
     </url>
     
         <url>
+            <loc>https://https://urara-blog-nu.vercel.app//page1</loc>
+            <lastmod>2023-12-12T00:00:00.000Z</lastmod>
+            <priority>0.5</priority>
+        </url>
+        <url>
+            <loc>https://https://urara-blog-nu.vercel.app//page2</loc>
+            <lastmod>2023-12-12T00:00:00.000Z</lastmod>
+            <priority>0.5</priority>
+        </url>
+        <url>
             <loc>https://https://urara-blog-nu.vercel.app//about</loc>
             <lastmod>2021-12-12T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
