@@ -1,9 +1,9 @@
 {
-  "name": "Urara",
-  "short_name": "Urara",
+  "name": "Az's Blog",
+  "short_name": "Az's Blog",
   "lang": "en-US",
-  "description": "Powered by SvelteKit/Urara",
-  "id": "https://urara-demo.netlify.app/",
+  "description": " ",
+  "id": "https://https://urara-blog-nu.vercel.app//",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -12,25 +12,25 @@
   "theme_color": "#3D4451",
   "icons": [
     {
-      "src": "https://urara-demo.netlify.app/assets/any@192.png",
+      "src": "https://https://urara-blog-nu.vercel.app//assets/any@192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://urara-demo.netlify.app/assets/any@512.png",
+      "src": "https://https://urara-blog-nu.vercel.app//assets/any@512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://urara-demo.netlify.app/assets/maskable@192.png",
+      "src": "https://https://urara-blog-nu.vercel.app//assets/maskable@192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://urara-demo.netlify.app/assets/maskable@512.png",
+      "src": "https://https://urara-blog-nu.vercel.app//assets/maskable@512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
