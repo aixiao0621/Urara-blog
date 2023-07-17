@@ -1,1 +1,1 @@
-Bolg
+Blog, powered by Urara
