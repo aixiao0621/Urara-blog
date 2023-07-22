@@ -6,7 +6,7 @@
   <icon>https://https://urara-blog-nu.vercel.app//favicon.png</icon>
   <link href="https://https://urara-blog-nu.vercel.app/" />
   <link href="https://https://urara-blog-nu.vercel.app//atom.xml" rel="self" type="application/atom+xml" />
-  <updated>2023-07-22T14:29:56.564Z</updated>
+  <updated>2023-07-22T16:50:03.215Z</updated>
   <author>
     <name><![CDATA[Az]]></name>
   </author>
@@ -14,7 +14,7 @@
   <category term="Rev" scheme="https://https://urara-blog-nu.vercel.app//?tags=Rev" />
   <category term="frida" scheme="https://https://urara-blog-nu.vercel.app//?tags=frida" />
   <category term="IoT" scheme="https://https://urara-blog-nu.vercel.app//?tags=IoT" />
-  <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
+  <category term="unlisted" scheme="https://https://urara-blog-nu.vercel.app//?tags=unlisted" />
   <entry>
     <title type="html"><![CDATA[小天同学 第三方 APP 开发]]></title>
     <link href="https://https://urara-blog-nu.vercel.app//page4" />
@@ -45,6 +45,7 @@
     <id>https://https://urara-blog-nu.vercel.app//page3</id>
     <published>2023-03-05T00:00:00.000Z</published>
     <updated>2023-03-18T00:00:00.000Z</updated>
+    <summary type="html"><![CDATA[尽管并不稳定，但折腾就对了]]></summary>
     <content type="html">
       <![CDATA[<h2 id="刷写"><a href="#刷写">刷写</a></h2><ol><li>准备 PE 盘：复制准备好的 openwrt 镜像 (x86-64)，（为了方便这里选择了整合包）和刷写工具 <a href="https://m0n0.ch/wall/physdiskwrite.php" rel="nofollow noopener noreferrer external" target="_blank">physdiskwrite</a> 到 PE 盘  </li><li>刷写镜像：在 bios 修改启动项，进入 PE，将原磁盘格式化为一个分区，使用 <code>physdiskwrite</code> 命令刷写，在 cmd 中输入命令 <code>.\physdiskwriter.exe -u &lt;镜像路径&gt;</code> 进行刷写</li><li>启动：修改回原来的启动项再启动，就可以进入 <code>openWRT</code></li></ol><h2 id="其他"><a href="#其他">其他</a></h2><ul><li>整合包中自带了 <code>openclash</code> ，导入配置即可使用，如果安装 <code>docker</code>，则需要使用 <code>TUN模式</code></li><li>在 BIOS 中设置通电自启是必要的  </li><li>在使用工具刷写时，需要选择要刷写的盘，请确定<code>0</code>和<code>1</code>中哪个才是硬盘，确定不了就多试几次吧 (悲)  </li><li>下载下来的镜像可能需要多次解压，需要的是分为<code>0.img ...</code>的上一级  </li><li>进入 PE 的方法请自行百度，台式机大多为开机时按 ESC 在 <code>BIOS</code> 中的 <code>BOOT</code> 选项中更改启动项，将 PE 盘放在第一位，保存并重启  </li><li>openWRT 初次启动后请设置账户密码  </li><li>服务长时间不重新启动可能会造成网速过慢</li></ul>]]>
     </content>
@@ -70,6 +71,6 @@
     <content type="html">
       <![CDATA[<p>Welcome to Urara!</p><h2 id="about-me"><a href="#about-me">About me</a></h2>]]>
     </content>
-    <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
+    <category term="unlisted" scheme="https://https://urara-blog-nu.vercel.app//?tags=unlisted" />
   </entry>
 </feed>
