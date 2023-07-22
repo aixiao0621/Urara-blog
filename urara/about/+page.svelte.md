@@ -2,11 +2,12 @@
 title: 'About me'
 image: '/about/urara.webp'
 alt: 'Urara'
-created: 2022-12-31
-updated: 2022-12-31
+created: 1970-01-01
+updated: 1970-01-01
 tags:
   - 'Urara'
 ---
 
+Welcome to Urara!
 
 ## About me

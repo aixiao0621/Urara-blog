@@ -1,13 +1,12 @@
 ---
 title: '通过 Homeassistant 控制继电器'
-alt: 'Urara'
-created: 2022-11-01
-updated: 2023-12-12
+alt: 'Az'
+created: 2023-01-13
+updated: 2023-02-27
 tags:
-  - 'Urara'
+  - 'IoT'
 ---
 
-Welcome to Urara!
 
 ## 环境安装
 

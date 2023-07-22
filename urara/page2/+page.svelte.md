@@ -1,9 +1,9 @@
 ---
 title: '使用 frida 对 APP 进行脱壳'
-image: '/about/urara.webp'
+image: '/page2/frida.png'
 alt: 'Az'
-created: 2022-11-01
-updated: 2023-12-12
+created: 2023-04-01
+updated: 2023-04-01
 tags:
   - 'frida'
 ---
