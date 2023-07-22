@@ -1,6 +1,5 @@
 ---
 title: '通过 Homeassistant 控制继电器'
-image: ' '
 alt: 'Urara'
 created: 2022-11-01
 updated: 2023-12-12
