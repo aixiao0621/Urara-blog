@@ -11,7 +11,7 @@ export const site: SiteConfig = {
     avatar: '/assets/maskable@512.png',
     name: 'Az',
     status: '🌸',
-    bio: 'Hi👋 这里是Az'
+    bio: 'Hi👋 这里是阿兹'
   },
   themeColor: '#3D4451'
 }

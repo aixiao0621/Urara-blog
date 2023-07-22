@@ -27,19 +27,19 @@ export type Friend = {
 
 export const friends: Friend[] = [
   {
-    id: 'id',
-    rel: 'friend',
-    name: 'Name',
-    title: 'Title',
-    avatar: '/favicon.png',
-    link: 'https://urara-demo.netlify.app/',
-    descr: 'A Descriptions.',
+    id: ' StevenRCE0',
+    name: 'StevenRCE0',
+    title: 'StevenRCE0',
+    avatar: 'https://avatars.githubusercontent.com/u/40051361',
+    link: 'https://rcex.live/',
+    descr: 'Wind rises... We shall try to live!',
   },
   {
-    id: 'id_2',
-    name: 'name_2',
-    avatar: '/favicon.png',
-    title: 'Title_2',
-    descr: 'Friends_2',
+    id: 'trdthg',
+    name: 'trdthg',
+    avatar: 'https://avatars.githubusercontent.com/u/69898423',
+    title: 'trdthg',
+    link:'https://trdthg.github.io/',
+    descr: '🕊 \(￣︶￣*\))🐕',
   }
 ]
