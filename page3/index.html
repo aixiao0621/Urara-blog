@@ -20,22 +20,22 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.ec685e7e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/icon.73965eee.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/5.be51927d.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/7.2b7e83d3.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.9b92e6d8.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.93a78711.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.7f8f0de1.js"><title>通过 Homeassistant 控制继电器 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://https://urara-blog-nu.vercel.app//favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://https://urara-blog-nu.vercel.app//assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://https://urara-blog-nu.vercel.app//assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://https://urara-blog-nu.vercel.app//page1">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.7f8f0de1.js"><title> 为 J1900 小主机刷写 openWRT | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://https://urara-blog-nu.vercel.app//favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://https://urara-blog-nu.vercel.app//assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://https://urara-blog-nu.vercel.app//assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://https://urara-blog-nu.vercel.app//page3">
     
     <meta name="keywords" content="IoT">
     <!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
-    <meta property="og:title" content="通过 Homeassistant 控制继电器">
+    <meta property="og:title" content=" 为 J1900 小主机刷写 openWRT">
     
     <meta property="og:image" content="https://https://urara-blog-nu.vercel.app//assets/maskable@512.png">
       <meta name="twitter:card" content="summary">
     <meta property="article:tag" content="IoT">
-    <meta property="og:url" content="https://https://urara-blog-nu.vercel.app//page1">
+    <meta property="og:url" content="https://https://urara-blog-nu.vercel.app//page3">
     <meta property="article:author" content="Az">
-    <meta property="article:published_time" content="2023-01-13T00:00:00.000Z">
-    <meta property="article:modified_time" content="2023-02-27T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
+    <meta property="article:published_time" content="2023-03-05T00:00:00.000Z">
+    <meta property="article:modified_time" content="2023-03-18T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
     <div style="display: contents">
@@ -107,28 +107,22 @@
   <div class="card-body gap-0 "><div class="flex flex-col gap-2">
       <div class="flex font-semibold gap-1.5"><a rel="author" class="opacity-75 hover:opacity-100 hover:text-primary duration-500 ease-in-out p-author h-card" href="https://https://urara-blog-nu.vercel.app/">Az</a>
   <span class="opacity-50">/</span>
-  <a href="/page1" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-01-13T00:00:00.000Z" itemprop="datePublished">Friday, Jan 13, 23</time>
-    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-02-27T00:00:00.000Z" itemprop="dateModified">Monday, Feb 27, 23</time></a></div>
-      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">通过 Homeassistant 控制继电器</h1>
+  <a href="/page3" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-03-05T00:00:00.000Z" itemprop="datePublished">Sunday, Mar 5, 23</time>
+    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-03-18T00:00:00.000Z" itemprop="dateModified">Saturday, Mar 18, 23</time></a></div>
+      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name"> 为 J1900 小主机刷写 openWRT</h1>
       </div>
-    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境安装"><a href="#环境安装">环境安装</a></h2>
-<ol><li>使用<a href="https://github.com/AlexxIT/HassWP" rel="nofollow noopener noreferrer external" target="_blank">HassWP</a>作为 homeassistant 客户端。</li>
-<li>使用 ESPHome 作为连接 ESP8266 与 HA 的平台，由于 HassWP 并不是 HA 的完全体，所以这里需要安装完整的 ESPHome，这里选择将其部署在 Liunx 虚拟机上。</li>
-<li>在安装 ESPHome 前请确保 Liunx 的 python 处于较高版本，这里使用了 3.11.1 版本。</li>
-<li>使用 <code>pip3 install esphome</code> 命令安装 ESPHome;
-使用 <code>ln -s /home/coolcall/.local/bin/esphome /usr/local/bin/esphome</code> 创建<del>软连接</del> ；
-使用 <code>sudo esphome dashboard config/</code> 运行。</li></ol>
-<h2 id="esp8266-的接入-esphome"><a href="#esp8266-的接入-esphome">ESP8266 的接入 ESPHome</a></h2>
-<ol><li>在 ESPHome 的管理页面中（建议在 windows 系统下使用 Liunx IP 地址的 6052 端口号访问，虚拟机使用桥接模式），点击<code>NEW DEVICE</code> 添加新设备，输入<code>name</code> ，在选择<code>ESP8266</code> 并出现<code>Configuration created!</code>后，先选择<code>SKIP</code>，然后在页面右上角的<code>SECRETS</code>处配置网络并保存。</li>
-<li>完成后打开<code>EDIT</code>并进行<code>INSTALL</code>，选择第四个，这里我选择使用 ESP8266Flasher 刷写下载的<code>.bin</code>（需要安装 CH341 驱动），当然你也可以选择使用 ESPHome 提供的 web 页面进行刷写。这里需要下载编译链，请保持良好的网络环境并等待一段时间。</li>
-<li>刷写成功后，ESP8266 就可以连接到 ESPHome 了，页面将会显示固件上线，再次点击<code>EDIT</code>，在<code>captive_portal:</code>后添加以下代码：</li></ol>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'><span style="color: #F07178">web_server</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #F07178">port</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #F78C6C">80</span></div><div class='line'></div><div class='line'><span style="color: #F07178">switch</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">platform</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">gpio</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">pin</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">GPIO0</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">name</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">书房灯</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">id</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">relay2</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">inverted</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #FF9CAC">True</span></div><div class='line'><span style="color: #EEFFFF">    </span></div><div class='line'><span style="color: #F07178">binary_sensor</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">platform</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">gpio</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">pin</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">GPIO2</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">name</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">press_switch_lib1</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">device_class</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">opening</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">filters</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">      </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">delayed_on_off</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">100ms</span><span style="color: #EEFFFF"> </span><span style="color: #546E7A">#消抖</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">on_state</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF">  </span><span style="color: #546E7A">#当这个二进制传感器状态改变的时候，触发 gpio0</span></div><div class='line'><span style="color: #EEFFFF">      </span><span style="color: #F07178">then</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">        </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">switch.toggle</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">relay2</span></div></code></div></pre><!-- HTML_TAG_END -->
-<p>再次<code>INSTALL</code>时即可选择第一个选项刷写。</p>
-<h2 id="在-ha-中添加固件"><a href="#在-ha-中添加固件">在 HA 中添加固件</a></h2>
-<ol><li>在 HA 的配置面板中选择设备与服务，在添加集成中搜索 ESPHome，主机地址需要填写上文中的<code>NAME</code>，在输入 key 后即可添加成功。（key 可以在刷写的<code>.yaml</code>文件中找到）</li></ol>
+    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="刷写"><a href="#刷写">刷写</a></h2>
+<ol><li>准备 PE 盘：复制准备好的 openwrt 镜像 (x86-64)，（为了方便这里选择了整合包）和刷写工具 <a href="https://m0n0.ch/wall/physdiskwrite.php" rel="nofollow noopener noreferrer external" target="_blank">physdiskwrite</a> 到 PE 盘  </li>
+<li>刷写镜像：在 bios 修改启动项，进入 PE，将原磁盘格式化为一个分区，使用 <code>physdiskwrite</code> 命令刷写，在 cmd 中输入命令 <code>.\physdiskwriter.exe -u &lt;镜像路径&gt;</code> 进行刷写</li>
+<li>启动：修改回原来的启动项再启动，就可以进入 <code>openWRT</code></li></ol>
 <h2 id="其他"><a href="#其他">其他</a></h2>
-<p>WIFI 省电模式：</p>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'><span style="color: #F07178">wifi</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #89DDFF">  </span><span style="color: #546E7A"># ...</span></div><div class='line'><span style="color: #F07178">power_save_mode</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">light</span></div></code></div></pre><!-- HTML_TAG_END --></main>
+<ul><li>整合包中自带了 <code>openclash</code> ，导入配置即可使用，如果安装 <code>docker</code>，则需要使用 <code>TUN模式</code></li>
+<li>在 BIOS 中设置通电自启是必要的  </li>
+<li>在使用工具刷写时，需要选择要刷写的盘，请确定<code>0</code>和<code>1</code>中哪个才是硬盘，确定不了就多试几次吧 (悲)  </li>
+<li>下载下来的镜像可能需要多次解压，需要的是分为<code>0.img ...</code>的上一级  </li>
+<li>进入 PE 的方法请自行百度，台式机大多为开机时按 ESC 在 <code>BIOS</code> 中的 <code>BOOT</code> 选项中更改启动项，将 PE 盘放在第一位，保存并重启  </li>
+<li>openWRT 初次启动后请设置账户密码  </li>
+<li>服务长时间不重新启动可能会造成网速过慢</li></ul></main>
     <div class="divider mt-4 mb-0"></div>
       <div><a href="/?tags=IoT" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#IoT
           </a></div></div>
@@ -164,7 +158,7 @@
 						import("../_app/immutable/entry/app.99e4f644.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 5],
+							node_ids: [0, 7],
 							data,
 							form: null,
 							error: null
