@@ -3,6 +3,7 @@ title: ' 为 J1900 小主机刷写 openWRT'
 alt: 'Az'
 created: 2023-03-05
 updated: 2023-03-18
+summary: '尽管并不稳定，但折腾就对了'
 tags:
   - 'IoT'
 ---
