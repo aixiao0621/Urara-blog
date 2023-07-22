@@ -6,14 +6,23 @@
   <icon>https://https://urara-blog-nu.vercel.app//favicon.png</icon>
   <link href="https://https://urara-blog-nu.vercel.app/" />
   <link href="https://https://urara-blog-nu.vercel.app//atom.xml" rel="self" type="application/atom+xml" />
-  <updated>2023-07-17T15:16:48.998Z</updated>
+  <updated>2023-07-22T13:53:00.146Z</updated>
   <author>
     <name><![CDATA[Az]]></name>
   </author>
-  <category term="Urara123" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara123" />
-  <category term="frida" scheme="https://https://urara-blog-nu.vercel.app//?tags=frida" />
-  <category term="Hello World" scheme="https://https://urara-blog-nu.vercel.app//?tags=Hello%20World" />
   <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
+  <category term="frida" scheme="https://https://urara-blog-nu.vercel.app//?tags=frida" />
+  <entry>
+    <title type="html"><![CDATA[About me]]></title>
+    <link href="https://https://urara-blog-nu.vercel.app//about" />
+    <id>https://https://urara-blog-nu.vercel.app//about</id>
+    <published>2022-12-31T00:00:00.000Z</published>
+    <updated>2022-12-31T00:00:00.000Z</updated>
+    <content type="html">
+      <![CDATA[<h2 id="about-me"><a href="#about-me">About me</a></h2>]]>
+    </content>
+    <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
+  </entry>
   <entry>
     <title type="html"><![CDATA[通过 Homeassistant 控制继电器]]></title>
     <link href="https://https://urara-blog-nu.vercel.app//page1" />
@@ -23,7 +32,7 @@
     <content type="html">
       <![CDATA[<p>Welcome to Urara!</p><h2 id="环境安装"><a href="#环境安装">环境安装</a></h2><ol><li>使用<a href="https://github.com/AlexxIT/HassWP" rel="nofollow noopener noreferrer external" target="_blank">HassWP</a>作为 homeassistant 客户端。</li><li>使用 ESPHome 作为连接 ESP8266 与 HA 的平台，由于 HassWP 并不是 HA 的完全体，所以这里需要安装完整的 ESPHome，这里选择将其部署在 Liunx 虚拟机上。</li><li>在安装 ESPHome 前请确保 Liunx 的 python 处于较高版本，这里使用了 3.11.1 版本。</li><li>使用 <code>pip3 install esphome</code> 命令安装 ESPHome;使用 <code>ln -s /home/coolcall/.local/bin/esphome /usr/local/bin/esphome</code> 创建<del>软连接</del> ；使用 <code>sudo esphome dashboard config/</code> 运行。</li></ol><h2 id="esp8266-的接入-esphome"><a href="#esp8266-的接入-esphome">ESP8266 的接入 ESPHome</a></h2><ol><li>在 ESPHome 的管理页面中（建议在 windows 系统下使用 Liunx IP 地址的 6052 端口号访问，虚拟机使用桥接模式），点击<code>NEW DEVICE</code> 添加新设备，输入<code>name</code> ，在选择<code>ESP8266</code> 并出现<code>Configuration created!</code>后，先选择<code>SKIP</code>，然后在页面右上角的<code>SECRETS</code>处配置网络并保存。</li><li>完成后打开<code>EDIT</code>并进行<code>INSTALL</code>，选择第四个，这里我选择使用 ESP8266Flasher 刷写下载的<code>.bin</code>（需要安装 CH341 驱动），当然你也可以选择使用 ESPHome 提供的 web 页面进行刷写。这里需要下载编译链，请保持良好的网络环境并等待一段时间。</li><li>刷写成功后，ESP8266 就可以连接到 ESPHome 了，页面将会显示固件上线，再次点击<code>EDIT</code>，在<code>captive_portal:</code>后添加以下代码：</li></ol><!-- HTML_TAG_START --><pre class="shiki material-default" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'>web_server:</div><div class='line'>  port: 80</div><div class='line'></div><div class='line'>switch:</div><div class='line'>  - platform: gpio</div><div class='line'>    pin: GPIO0</div><div class='line'>    name: "书房灯"</div><div class='line'>    id: relay2</div><div class='line'>    inverted: True</div><div class='line'>    </div><div class='line'>binary_sensor:</div><div class='line'>  - platform: gpio</div><div class='line'>    pin: GPIO2</div><div class='line'>    name: "press_switch_lib1"</div><div class='line'>    device_class: opening</div><div class='line'>    filters:</div><div class='line'>      - delayed_on_off: 100ms #消抖</div><div class='line'>    on_state:  #当这个二进制传感器状态改变的时候，触发 gpio0</div><div class='line'>      then:</div><div class='line'>        - switch.toggle: relay2</div></code></div></pre><!-- HTML_TAG_END --><p>再次<code>INSTALL</code>时即可选择第一个选项刷写。</p><h2 id="在-ha-中添加固件"><a href="#在-ha-中添加固件">在 HA 中添加固件</a></h2><ol><li>在 HA 的配置面板中选择设备与服务，在添加集成中搜索 ESPHome，主机地址需要填写上文中的<code>NAME</code>，在输入 key 后即可添加成功。（key 可以在刷写的<code>.yaml</code>文件中找到）</li></ol><h2 id="其他"><a href="#其他">其他</a></h2><p>WIFI 省电模式：</p><!-- HTML_TAG_START --><pre class="shiki material-default" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'>wifi:</div><div class='line'>  # ...</div><div class='line'>power_save_mode: light</div></code></div></pre><!-- HTML_TAG_END -->]]>
     </content>
-    <category term="Urara123" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara123" />
+    <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
   </entry>
   <entry>
     <title type="html"><![CDATA[使用 frida 对 APP 进行脱壳]]></title>
@@ -35,17 +44,5 @@
       <![CDATA[<h2 id="android-端的准备"><a href="#android-端的准备">Android 端的准备</a></h2><ol><li>在 <a href="https://github.com/frida/frida" rel="nofollow noopener noreferrer external" target="_blank">frida</a> 仓库中下载<code>frida-server</code>文件，需要与手机架构和 PC 端 frida 版本相对应，解压后可以使用<code>adb push</code> 到手机，也可以使用 <code>MT文件管理器</code>，将其移动到 <code>/data/local/tmp</code> 目录内，赋予 <code>777</code> 权限</li><li>将手机与电脑连接，使用 <code>adb devices</code> 查看连接的设备，确保 adb 正确连接</li></ol><h2 id="pc-端的准备"><a href="#pc-端的准备">PC 端的准备</a></h2><ol><li>使用 <code>pip install frida</code> 命令安装 <a href="https://github.com/frida/frida" rel="nofollow noopener noreferrer external" target="_blank">frida</a></li><li>使用 <code>pip install frida-tools</code> 命令安装 frida-tools  </li><li>使用<code>pip3 install frida-dexdump</code> 安装 <a href="https://github.com/hluwa/FRIDA-DEXDump" rel="nofollow noopener noreferrer external" target="_blank">dexdump</a></li><li>在 cmd 中执行以下命令  </li></ol><!-- HTML_TAG_START --><pre class="shiki material-default" shell="true"><div class="language-id">shell</div><div class='code-container'><code><div class='line'>adb shell  </div><div class='line'>cd /data/local/tmp/  </div><div class='line'>su  </div><div class='line'>./frida-server-android...  </div></code></div></pre><!-- HTML_TAG_END --><h2 id="开始脱壳"><a href="#开始脱壳">开始脱壳</a></h2><ol><li>打开新的 cmd 执行以下命令 <code>frida-dexdump -U -f com.app.pkgname</code> 即可开始脱壳  </li><li>推荐加上 <code>-d</code> 即深度搜索，结果更加完整，注意 <code>-f</code> 后必须直接跟包名</li></ol><h2 id="修复和查看"><a href="#修复和查看">修复和查看</a></h2><ol><li>生成的项目文件存放在<code>C:\\Windows\\System32</code>目录下  </li><li>使用 MT 管理器进行 dex 修复  </li><li>使用 jadx 查看修复后的 dex 文件  </li></ol>]]>
     </content>
     <category term="frida" scheme="https://https://urara-blog-nu.vercel.app//?tags=frida" />
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="https://https://urara-blog-nu.vercel.app//about" />
-    <id>https://https://urara-blog-nu.vercel.app//about</id>
-    <published>2021-11-01T00:00:00.000Z</published>
-    <updated>2021-12-12T00:00:00.000Z</updated>
-    <content type="html">
-      <![CDATA[<p>Welcome to Urara! this article contains some basic operations to help you quickly get started.</p><h2 id="developing"><a href="#developing">Developing</a></h2><p>Start a development server:</p><!-- HTML_TAG_START --><pre class="shiki material-default" bash="true"><div class="language-id">bash</div><div class='code-container'><code><div class='line'># http://127.0.0.1:5173</div><div class='line'>pnpm dev</div></code></div></pre><!-- HTML_TAG_END --><p>or listen to different IP and port:</p><!-- HTML_TAG_START --><pre class="shiki material-default" bash="true"><div class="language-id">bash</div><div class='code-container'><code><div class='line'># http://127.0.0.1:3000</div><div class='line'>pnpm dev --port 3000</div><div class='line'></div><div class='line'># http://0.0.0.0:3000</div><div class='line'>nr dev --host 0.0.0.0 --port 3000</div></code></div></pre><!-- HTML_TAG_END --><h2 id="building"><a href="#building">Building</a></h2><p>Create a production version of ur blog:</p><!-- HTML_TAG_START --><pre class="shiki material-default" bash="true"><div class="language-id">bash</div><div class='code-container'><code><div class='line'>pnpm build</div></code></div></pre><!-- HTML_TAG_END --><p>u can preview the built app with <code>pnpm preview</code>.</p><h2 id="documentation"><a href="#documentation">Documentation</a></h2><p>For full documentation, visit <a href="https://urara-docs.netlify.app" rel="nofollow noopener noreferrer external" target="_blank">urara-docs.netlify.app</a>.</p>]]>
-    </content>
-    <category term="Hello World" scheme="https://https://urara-blog-nu.vercel.app//?tags=Hello%20World" />
-    <category term="Urara" scheme="https://https://urara-blog-nu.vercel.app//?tags=Urara" />
   </entry>
 </feed>
