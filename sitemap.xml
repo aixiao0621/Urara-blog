@@ -7,31 +7,31 @@
     xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
     xmlns:video="https://www.google.com/schemas/sitemap-video/1.1">
     <url>
-      <loc>https://urara-blog-nu.vercel.app</loc>
+      <loc>https://az0x01-blog.vercel.app</loc>
     </url>
     
         <url>
-            <loc>https://urara-blog-nu.vercel.app/page4</loc>
+            <loc>https://az0x01-blog.vercel.app/page4</loc>
             <lastmod>2023-05-15T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://urara-blog-nu.vercel.app/page2</loc>
+            <loc>https://az0x01-blog.vercel.app/page2</loc>
             <lastmod>2023-04-01T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://urara-blog-nu.vercel.app/page3</loc>
+            <loc>https://az0x01-blog.vercel.app/page3</loc>
             <lastmod>2023-03-18T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://urara-blog-nu.vercel.app/page1</loc>
+            <loc>https://az0x01-blog.vercel.app/page1</loc>
             <lastmod>2023-02-27T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://urara-blog-nu.vercel.app/about</loc>
+            <loc>https://az0x01-blog.vercel.app/about</loc>
             <lastmod>1970-01-01T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
