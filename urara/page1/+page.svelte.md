@@ -17,7 +17,7 @@ tags:
   使用 `ln -s /home/coolcall/.local/bin/esphome /usr/local/bin/esphome` 创建~~软连接~~ ；
   使用 `sudo esphome dashboard config/` 运行。
 
-## ESP8266 的接入 ESPHome
+## ESP8266 接入 ESPHome
 
 1. 在 ESPHome 的管理页面中（建议在 windows 系统下使用 Liunx IP 地址的 6052 端口号访问，虚拟机使用桥接模式），点击`NEW DEVICE` 添加新设备，输入`name` ，在选择`ESP8266` 并出现`Configuration created!`后，先选择`SKIP`，然后在页面右上角的`SECRETS`处配置网络并保存。
 2. 完成后打开`EDIT`并进行`INSTALL`，选择第四个，这里我选择使用 ESP8266Flasher 刷写下载的`.bin`（需要安装 CH341 驱动），当然你也可以选择使用 ESPHome 提供的 web 页面进行刷写。这里需要下载编译链，请保持良好的网络环境并等待一段时间。
