@@ -2,7 +2,7 @@ import type { SiteConfig } from '$lib/types/site'
 
 export const site: SiteConfig = {
   protocol: import.meta.env.URARA_SITE_PROTOCOL ?? import.meta.env.DEV ? 'http://' : 'https://',
-  domain: import.meta.env.URARA_SITE_DOMAIN ?? 'urara-blog-nu.vercel.app',
+  domain: import.meta.env.URARA_SITE_DOMAIN ?? 'az0x01-blog.vercel.app',
   title: 'Az\'s Blog',
   subtitle: 'anything',
   lang: 'en-US',
