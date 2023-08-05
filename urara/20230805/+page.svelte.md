@@ -6,7 +6,7 @@ created: 2023-08-05
 updated: 2023-08-05
 summary: '使用 SquareLine Stdio 的 GUI 开发'
 tags:
-  - 'Iot'
+  - 'IoT'
 ---
 
 ## 环境需求
@@ -66,3 +66,7 @@ tags:
 5. 进入 Display， 开启 Avoid tearing effect
 6. 进入 Select LVGL buffer mode，开启 Direct mode
 ```
+
+## 编译烧录
+
+在 ESP-IDF 中使用 `idf.py build` 编译后进行烧录
