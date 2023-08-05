@@ -6,14 +6,26 @@
   <icon>https://az0x01-blog.vercel.app/favicon.png</icon>
   <link href="https://az0x01-blog.vercel.app" />
   <link href="https://az0x01-blog.vercel.app/atom.xml" rel="self" type="application/atom+xml" />
-  <updated>2023-08-04T15:47:52.683Z</updated>
+  <updated>2023-08-05T15:27:36.635Z</updated>
   <author>
     <name><![CDATA[Az]]></name>
   </author>
+  <category term="IoT" scheme="https://az0x01-blog.vercel.app/?tags=IoT" />
   <category term="Android" scheme="https://az0x01-blog.vercel.app/?tags=Android" />
   <category term="Rev" scheme="https://az0x01-blog.vercel.app/?tags=Rev" />
   <category term="frida" scheme="https://az0x01-blog.vercel.app/?tags=frida" />
-  <category term="IoT" scheme="https://az0x01-blog.vercel.app/?tags=IoT" />
+  <entry>
+    <title type="html"><![CDATA[LVGL 初探]]></title>
+    <link href="https://az0x01-blog.vercel.app/20230805" />
+    <id>https://az0x01-blog.vercel.app/20230805</id>
+    <published>2023-08-05T00:00:00.000Z</published>
+    <updated>2023-08-05T00:00:00.000Z</updated>
+    <summary type="html"><![CDATA[使用 SquareLine Stdio 的 GUI 开发]]></summary>
+    <content type="html">
+      <![CDATA[<h2 id="环境需求"><a href="#环境需求">环境需求</a></h2><ul><li>ESP32-S3-LCD-EV-BOARD</li><li><a href="https://squareline.io/" rel="nofollow noopener noreferrer external" target="_blank">SquareLine Stdio</a> v1.3.1</li><li>ESP-IDF v5.0.2</li></ul><h2 id="创建项目"><a href="#创建项目">创建项目</a></h2><ol><li>在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕</li><li>打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存</li><li>在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错</li><li>在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改</li><li>在 Export 选项卡中导出项目，先 Creat Template project 然后再 Export UI Files</li></ol><h2 id="修改-menuconfig"><a href="#修改-menuconfig">修改 Menuconfig</a></h2><h3 id="修改字体"><a href="#修改字体">修改字体</a></h3><p>在 ESP-IDF 中打开项目 使用 <code>idf.py menuconfig</code> 命令<br>搜索 <code>font 26</code> 选择 LV_FONTMONTSERRAT_26(=n) “Enable Montserrat 26” 启用后保存</p><h3 id="设置-psram-为-120mhz"><a href="#设置-psram-为-120mhz">设置 psram 为 120MHz</a></h3><!-- HTML_TAG_START --><pre class="shiki material-default" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'>1. 搜索 psram</div><div class='line'>2. 选择 SPIRAM_MODE_OCT(=y) "Octal Mode PSRAM"</div><div class='line'>3. 进入 Octal Mode PSRAM</div><div class='line'>4. 进入 Set RAM clock speed</div><div class='line'>5. 选择 120MHz clock speed</div></code></div></pre><!-- HTML_TAG_END --><h3 id="设置-flash-为-120mhz"><a href="#设置-flash-为-120mhz">设置 flash 为 120MHz</a></h3><!-- HTML_TAG_START --><pre class="shiki material-default" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'>1. 搜索 flash</div><div class='line'>2. 选择 ESPTOOLPY_FLASHFREQ_120M(=n) "120MHz"</div><div class='line'>3. 选择 120MHz</div></code></div></pre><!-- HTML_TAG_END --><h3 id="设置-data-cache-line"><a href="#设置-data-cache-line">设置 data cache line</a></h3><!-- HTML_TAG_START --><pre class="shiki material-default" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'>1. 搜索 data cache line</div><div class='line'>2. 选择 ESP_32S3_DATA_CACHE_LINE_64B(=n) "64 Bytes"</div><div class='line'>3. 选择 64Bytes</div></code></div></pre><!-- HTML_TAG_END --><h3 id="开启防撕裂模式"><a href="#开启防撕裂模式">开启防撕裂模式</a></h3><!-- HTML_TAG_START --><pre class="shiki material-default" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'>1. 搜索 avoid tearing effect</div><div class='line'>2. 进入 BSP_DISPLAY_LVGL_AVOID_TEAR(=n) "Avoid tearing effect"</div><div class='line'>3. 选择 Avoid tearing effect (NEW),进入 LCD</div><div class='line'>4. 开启 Enable to use double frame buffers 以及 Enable to refresh LCD manually</div><div class='line'>5. 进入 Display， 开启 Avoid tearing effect</div><div class='line'>6. 进入 Select LVGL buffer mode，开启 Direct mode</div></code></div></pre><!-- HTML_TAG_END --><h2 id="编译烧录"><a href="#编译烧录">编译烧录</a></h2><p>在 ESP-IDF 中使用 <code>idf.py build</code> 编译后进行烧录</p>]]>
+    </content>
+    <category term="IoT" scheme="https://az0x01-blog.vercel.app/?tags=IoT" />
+  </entry>
   <entry>
     <title type="html"><![CDATA[小天同学 第三方 APP 开发]]></title>
     <link href="https://az0x01-blog.vercel.app/page4" />
