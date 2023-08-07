@@ -37,6 +37,7 @@
         href="https://github.com/importantimport/urara">
         Urara
       </a>
+      <br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
       {#if footerConfig.html}
         <br />
         {@html footerConfig.html}
