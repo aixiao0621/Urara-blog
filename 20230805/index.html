@@ -10,20 +10,20 @@
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <meta http-equiv="content-security-policy" content="style-src 'self' 'unsafe-inline' https://giscus.app">
 		<link href="../_app/immutable/assets/0.c18ee35e.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.8d65092e.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.3062d14c.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index.c6996e9d.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.afb0fe7f.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.ac86718c.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index.9a55efb6.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.8140b421.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.816a1504.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/0.79cd883f.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.c9c8893f.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.3178be76.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/icon.e9372e2c.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/3.1c99035d.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.5f258789.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.145e5d5d.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.aa09a18f.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
+		<link rel="modulepreload" href="../_app/immutable/chunks/icon.bd68d732.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/3.3f4cc8a1.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.338b5658.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.fa5f9ae2.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.39924876.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
     
     <meta name="keywords" content="IoT">
     <meta name="description" content="使用 SquareLine Stdio 的 GUI 开发"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
@@ -150,13 +150,14 @@
       Powered by
       <a rel="noopener noreferrer external" target="_blank" class="tooltip tooltip-secondary hover:text-secondary" data-tip="🌸 [δ] - Based on MDsveX & SvelteKit 🌸" href="https://github.com/importantimport/urara">Urara
       </a>
+      <br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
       </p></div></footer></div></div></div>
 
 
 			<script type="application/json" data-sveltekit-fetched data-url="/posts.json">{"status":200,"statusText":"","headers":{},"body":"[{\"title\":\"LVGL 初探\",\"image\":\"\",\"alt\":\"Az\",\"created\":\"2023-08-05T00:00:00.000Z\",\"updated\":\"2023-08-05T00:00:00.000Z\",\"summary\":\"使用 SquareLine Stdio 的 GUI 开发\",\"tags\":[\"IoT\"],\"images\":[],\"slug\":\"/20230805/+page.svelte.md\",\"path\":\"/20230805\",\"toc\":[{\"depth\":2,\"title\":\"环境需求\",\"slug\":\"环境需求\"},{\"depth\":2,\"title\":\"创建项目\",\"slug\":\"创建项目\"},{\"depth\":2,\"title\":\"修改 Menuconfig\",\"slug\":\"修改-menuconfig\"},{\"depth\":3,\"title\":\"修改字体\",\"slug\":\"修改字体\"},{\"depth\":3,\"title\":\"设置 psram 为 120MHz\",\"slug\":\"设置-psram-为-120mhz\"},{\"depth\":3,\"title\":\"设置 flash 为 120MHz\",\"slug\":\"设置-flash-为-120mhz\"},{\"depth\":3,\"title\":\"设置 data cache line\",\"slug\":\"设置-data-cache-line\"},{\"depth\":3,\"title\":\"开启防撕裂模式\",\"slug\":\"开启防撕裂模式\"},{\"depth\":2,\"title\":\"编译烧录\",\"slug\":\"编译烧录\"}],\"type\":\"article\",\"html\":\"\"},{\"title\":\"小天同学 第三方 APP 开发\",\"image\":\"/page4/logo.svg\",\"alt\":\"Az\",\"created\":\"2023-05-10T00:00:00.000Z\",\"updated\":\"2023-05-15T00:00:00.000Z\",\"tags\":[\"Android\",\"Rev\"],\"images\":[],\"slug\":\"/page4/+page.svelte.md\",\"path\":\"/page4\",\"toc\":[{\"depth\":2,\"title\":\"APP 方向\",\"slug\":\"app-方向\"},{\"depth\":2,\"title\":\"微信小程序方向\",\"slug\":\"微信小程序方向\"},{\"depth\":2,\"title\":\"又回到最初的起点🎵\",\"slug\":\"又回到最初的起点\"},{\"depth\":2,\"title\":\"APP 开发\",\"slug\":\"app-开发\"}],\"type\":\"article\",\"html\":\"\"},{\"title\":\"使用 frida 对 APP 进行脱壳\",\"image\":\"/page2/frida.png\",\"alt\":\"Az\",\"created\":\"2023-04-01T00:00:00.000Z\",\"updated\":\"2023-04-01T00:00:00.000Z\",\"tags\":[\"frida\",\"Rev\"],\"images\":[],\"slug\":\"/page2/+page.svelte.md\",\"path\":\"/page2\",\"toc\":[{\"depth\":2,\"title\":\"Android 端的准备\",\"slug\":\"android-端的准备\"},{\"depth\":2,\"title\":\"PC 端的准备\",\"slug\":\"pc-端的准备\"},{\"depth\":2,\"title\":\"开始脱壳\",\"slug\":\"开始脱壳\"},{\"depth\":2,\"title\":\"修复和查看\",\"slug\":\"修复和查看\"}],\"type\":\"article\",\"html\":\"\"},{\"title\":\" 为 J1900 小主机刷写 openWRT\",\"alt\":\"Az\",\"created\":\"2023-03-05T00:00:00.000Z\",\"updated\":\"2023-03-18T00:00:00.000Z\",\"summary\":\"尽管并不稳定，但折腾就对了\",\"tags\":[\"IoT\"],\"images\":[],\"slug\":\"/page3/+page.svelte.md\",\"path\":\"/page3\",\"toc\":[{\"depth\":2,\"title\":\"刷写\",\"slug\":\"刷写\"},{\"depth\":2,\"title\":\"其他\",\"slug\":\"其他\"}],\"type\":\"article\",\"html\":\"\"},{\"title\":\"通过 Homeassistant 控制继电器\",\"alt\":\"Az\",\"created\":\"2023-01-13T00:00:00.000Z\",\"updated\":\"2023-02-27T00:00:00.000Z\",\"tags\":[\"IoT\"],\"images\":[],\"slug\":\"/page1/+page.svelte.md\",\"path\":\"/page1\",\"toc\":[{\"depth\":2,\"title\":\"环境安装\",\"slug\":\"环境安装\"},{\"depth\":2,\"title\":\"ESP8266 接入 ESPHome\",\"slug\":\"esp8266-接入-esphome\"},{\"depth\":2,\"title\":\"在 HA 中添加固件\",\"slug\":\"在-ha-中添加固件\"},{\"depth\":2,\"title\":\"其他\",\"slug\":\"其他\"}],\"type\":\"article\",\"html\":\"\"},{\"title\":\"About me\",\"image\":\"/about/urara.webp\",\"alt\":\"Urara\",\"created\":\"1970-01-01T00:00:00.000Z\",\"updated\":\"1970-01-01T00:00:00.000Z\",\"flags\":[\"unlisted\"],\"images\":[],\"tags\":[],\"slug\":\"/about/+page.svelte.md\",\"path\":\"/about\",\"toc\":[{\"depth\":2,\"title\":\"About me\",\"slug\":\"about-me\"}],\"type\":\"article\",\"html\":\"\"}]"}</script>
 			<script>
 				{
-					__sveltekit_1dat5lh = {
+					__sveltekit_1kzas0o = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -166,8 +167,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("../_app/immutable/entry/start.8d65092e.js"),
-						import("../_app/immutable/entry/app.8140b421.js")
+						import("../_app/immutable/entry/start.3062d14c.js"),
+						import("../_app/immutable/entry/app.816a1504.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
