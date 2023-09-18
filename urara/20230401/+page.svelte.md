@@ -1,6 +1,6 @@
 ---
 title: '使用 frida 对 APP 进行脱壳'
-image: '/page2/frida.png'
+image: '/20230410/frida.png'
 alt: 'Az'
 created: 2023-04-01
 updated: 2023-04-01

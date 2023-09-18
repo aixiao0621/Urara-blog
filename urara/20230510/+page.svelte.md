@@ -1,6 +1,6 @@
 ---
 title: '小天同学 第三方 APP 开发'
-image: '/page4/logo.svg'
+image: '/20230510/logo.svg'
 alt: 'Az'
 created: 2023-05-10
 updated: 2023-05-15
@@ -9,14 +9,14 @@ tags:
   - 'Rev'
 ---
 
-官方 APP 使用不便 想开发一个使用更加便捷的第三方 APP
+官方 APP 使用不便 于是想开发一个使用更便捷的第三方 APP [项目地址](https://github.com/aixiao0621/Duoheshui)
 
-## APP 方向
+## APP 逆向
 
 抓包 发现 `data` 有加密 尝试解密失败，试图寻找源码
 使用工具[frida-dexdump](https://github.com/hluwa/frida-dexdump) 脱壳，但得到的代码可读性很低，发现有小程序，于是转战
 
-## 微信小程序方向
+## 微信小程序 逆向
 
 >原以为小程序和微信服务器的沟通只是为了拿到手机号明文，于是想要直接使用小程序的请求方式完成登录等全部流程
 
