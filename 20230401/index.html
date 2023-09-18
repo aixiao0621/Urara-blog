@@ -20,22 +20,22 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.66901c9e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/icon.91a6a625.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/7.b2e581ef.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/5.e459f6c2.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.b4692dd9.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.e679ecb5.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>使用 frida 对 APP 进行脱壳 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230401">
     
-    <meta name="keywords" content="IoT">
-    <meta name="description" content="使用 SquareLine Stdio 的 GUI 开发"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
-    <meta property="og:title" content="LVGL 初探">
-    <meta property="og:description" content="使用 SquareLine Stdio 的 GUI 开发">
-    <meta property="og:image" content="https://az0x01-blog.vercel.app/assets/maskable@512.png">
-      <meta name="twitter:card" content="summary">
-    <meta property="article:tag" content="IoT">
-    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230805">
+    <meta name="keywords" content="frida, Rev">
+    <!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
+    <meta property="og:title" content="使用 frida 对 APP 进行脱壳">
+    
+    <meta property="og:image" content="https://az0x01-blog.vercel.app/20230401/frida.png">
+      <meta name="twitter:card" content="summary_large_image">
+    <meta property="article:tag" content="frida"><meta property="article:tag" content="Rev">
+    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230401">
     <meta property="article:author" content="Az">
-    <meta property="article:published_time" content="2023-08-05T00:00:00.000Z">
-    <meta property="article:modified_time" content="2023-08-05T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
+    <meta property="article:published_time" content="2023-04-01T00:00:00.000Z">
+    <meta property="article:modified_time" content="2023-04-01T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
     <div style="display: contents">
@@ -104,39 +104,33 @@
   <div class="flex-none w-full max-w-screen-md mx-auto xl:mx-0"><article itemscope itemtype="https://schema.org/BlogPosting" itemprop="blogPost" class="h-entry card bg-base-100 rounded-none md:rounded-box md:shadow-xl overflow-hidden z-10 md:mb-8 lg:mb-16">
   
   
-  <div class="card-body gap-0 "><div class="flex flex-col gap-2">
+  <div class="card-body gap-0 "><div class="flex flex-col gap-2"><figure class="md:order-last rounded-box shadow-xl mb-4 flex-col gap-2 -mx-4 -mt-8 md:mt-0"><picture><source srcset="/_app/immutable/assets/frida.9535bddc.avif 736w" type="image/avif">
+    <img src="/20230401/frida.png" alt="/20230401/frida.png" class="u-featured" loading="lazy" decoding="async"></picture></figure>
       <div class="flex font-semibold gap-1.5"><a rel="author" class="opacity-75 hover:opacity-100 hover:text-primary duration-500 ease-in-out p-author h-card" href="https://az0x01-blog.vercel.app">Az</a>
   <span class="opacity-50">/</span>
-  <a href="/20230805" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-08-05T00:00:00.000Z" itemprop="datePublished">Saturday, Aug 5, 23</time>
-    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-08-05T00:00:00.000Z" itemprop="dateModified">Saturday, Aug 5, 23</time></a></div>
-      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">LVGL 初探</h1>
-      <p itemprop="description" class="p-summary mb-auto hidden">使用 SquareLine Stdio 的 GUI 开发</p></div>
-    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境需求"><a href="#环境需求">环境需求</a></h2>
-<ul><li>ESP32-S3-LCD-EV-BOARD</li>
-<li><a href="https://squareline.io/" rel="nofollow noopener noreferrer external" target="_blank">SquareLine Stdio</a> v1.3.1</li>
-<li>ESP-IDF v5.0.2</li></ul>
-<h2 id="创建项目"><a href="#创建项目">创建项目</a></h2>
-<ol><li>在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕</li>
-<li>打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存</li>
-<li>在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错</li>
-<li>在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改</li>
-<li>在 Export 选项卡中导出项目，先 Creat Template project 然后再 Export UI Files</li></ol>
-<h2 id="修改-menuconfig"><a href="#修改-menuconfig">修改 Menuconfig</a></h2>
-<h3 id="修改字体"><a href="#修改字体">修改字体</a></h3>
-<p>在 ESP-IDF 中打开项目 使用 <code>idf.py menuconfig</code> 命令<br>
-搜索 <code>font 26</code> 选择 LV_FONTMONTSERRAT_26(=n) “Enable Montserrat 26” 启用后保存</p>
-<h3 id="设置-psram-为-120mhz"><a href="#设置-psram-为-120mhz">设置 psram 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 psram</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 SPIRAM_MODE_OCT(=y) "Octal Mode PSRAM"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 进入 Octal Mode PSRAM</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 进入 Set RAM clock speed</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 选择 120MHz clock speed</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-flash-为-120mhz"><a href="#设置-flash-为-120mhz">设置 flash 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 flash</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESPTOOLPY_FLASHFREQ_120M(=n) "120MHz"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 120MHz</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-data-cache-line"><a href="#设置-data-cache-line">设置 data cache line</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 data cache line</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESP_32S3_DATA_CACHE_LINE_64B(=n) "64 Bytes"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 64Bytes</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="开启防撕裂模式"><a href="#开启防撕裂模式">开启防撕裂模式</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 进入 BSP_DISPLAY_LVGL_AVOID_TEAR(=n) "Avoid tearing effect"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 Avoid tearing effect (NEW),进入 LCD</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 开启 Enable to use double frame buffers 以及 Enable to refresh LCD manually</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 进入 Display， 开启 Avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">6.</span><span style="color: #EEFFFF"> 进入 Select LVGL buffer mode，开启 Direct mode</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h2 id="编译烧录"><a href="#编译烧录">编译烧录</a></h2>
-<p>在 ESP-IDF 中使用 <code>idf.py build</code> 编译后进行烧录</p></main>
+  <a href="/20230401" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-04-01T00:00:00.000Z" itemprop="datePublished">Saturday, Apr 1, 23</time>
+    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-04-01T00:00:00.000Z" itemprop="dateModified">Saturday, Apr 1, 23</time></a></div>
+      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">使用 frida 对 APP 进行脱壳</h1>
+      </div>
+    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="android-端的准备"><a href="#android-端的准备">Android 端的准备</a></h2>
+<ol><li>在 <a href="https://github.com/frida/frida" rel="nofollow noopener noreferrer external" target="_blank">frida</a> 仓库中下载<code>frida-server</code>文件，需要与手机架构和 PC 端 frida 版本相对应，解压后可以使用<code>adb push</code> 到手机，也可以使用 <code>MT文件管理器</code>，将其移动到 <code>/data/local/tmp</code> 目录内，赋予 <code>777</code> 权限</li>
+<li>将手机与电脑连接，使用 <code>adb devices</code> 查看连接的设备，确保 adb 正确连接</li></ol>
+<h2 id="pc-端的准备"><a href="#pc-端的准备">PC 端的准备</a></h2>
+<ol><li>使用 <code>pip install frida</code> 命令安装 <a href="https://github.com/frida/frida" rel="nofollow noopener noreferrer external" target="_blank">frida</a></li>
+<li>使用 <code>pip install frida-tools</code> 命令安装 frida-tools  </li>
+<li>使用<code>pip3 install frida-dexdump</code> 安装 <a href="https://github.com/hluwa/FRIDA-DEXDump" rel="nofollow noopener noreferrer external" target="_blank">dexdump</a></li>
+<li>在 cmd 中执行以下命令  </li></ol>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" shell="true"><div class="language-id">shell</div><div class='code-container'><code><div class='line'><span style="color: #EEFFFF">adb shell  </span></div><div class='line'><span style="color: #82AAFF">cd</span><span style="color: #EEFFFF"> /data/local/tmp/  </span></div><div class='line'><span style="color: #EEFFFF">su  </span></div><div class='line'><span style="color: #EEFFFF">./frida-server-android...  </span></div></code></div></pre><!-- HTML_TAG_END -->
+<h2 id="开始脱壳"><a href="#开始脱壳">开始脱壳</a></h2>
+<ol><li>打开新的 cmd 执行以下命令 <code>frida-dexdump -U -f com.app.pkgname</code> 即可开始脱壳  </li>
+<li>推荐加上 <code>-d</code> 即深度搜索，结果更加完整，注意 <code>-f</code> 后必须直接跟包名</li></ol>
+<h2 id="修复和查看"><a href="#修复和查看">修复和查看</a></h2>
+<ol><li>生成的项目文件存放在<code>C:\\Windows\\System32</code>目录下  </li>
+<li>使用 MT 管理器进行 dex 修复  </li>
+<li>使用 jadx 查看修复后的 dex 文件  </li></ol></main>
     <div class="divider mt-4 mb-0"></div>
-      <div><a href="/?tags=IoT" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#IoT
+      <div><a href="/?tags=frida" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#frida
+          </a><a href="/?tags=Rev" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#Rev
           </a></div></div>
   
     </article>
@@ -171,7 +165,7 @@
 						import("../_app/immutable/entry/app.c353dba5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 7],
+							node_ids: [0, 5],
 							data,
 							form: null,
 							error: null

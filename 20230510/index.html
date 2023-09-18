@@ -20,22 +20,22 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.66901c9e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/icon.91a6a625.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/7.b2e581ef.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/6.8174ee75.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.b4692dd9.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.e679ecb5.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>小天同学 第三方 APP 开发 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230510">
     
-    <meta name="keywords" content="IoT">
-    <meta name="description" content="使用 SquareLine Stdio 的 GUI 开发"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
-    <meta property="og:title" content="LVGL 初探">
-    <meta property="og:description" content="使用 SquareLine Stdio 的 GUI 开发">
-    <meta property="og:image" content="https://az0x01-blog.vercel.app/assets/maskable@512.png">
-      <meta name="twitter:card" content="summary">
-    <meta property="article:tag" content="IoT">
-    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230805">
+    <meta name="keywords" content="Android, Rev">
+    <!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
+    <meta property="og:title" content="小天同学 第三方 APP 开发">
+    
+    <meta property="og:image" content="https://az0x01-blog.vercel.app/20230510/logo.svg">
+      <meta name="twitter:card" content="summary_large_image">
+    <meta property="article:tag" content="Android"><meta property="article:tag" content="Rev">
+    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230510">
     <meta property="article:author" content="Az">
-    <meta property="article:published_time" content="2023-08-05T00:00:00.000Z">
-    <meta property="article:modified_time" content="2023-08-05T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
+    <meta property="article:published_time" content="2023-05-10T00:00:00.000Z">
+    <meta property="article:modified_time" content="2023-05-15T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
     <div style="display: contents">
@@ -104,39 +104,41 @@
   <div class="flex-none w-full max-w-screen-md mx-auto xl:mx-0"><article itemscope itemtype="https://schema.org/BlogPosting" itemprop="blogPost" class="h-entry card bg-base-100 rounded-none md:rounded-box md:shadow-xl overflow-hidden z-10 md:mb-8 lg:mb-16">
   
   
-  <div class="card-body gap-0 "><div class="flex flex-col gap-2">
+  <div class="card-body gap-0 "><div class="flex flex-col gap-2"><figure class="md:order-last rounded-box shadow-xl mb-4 flex-col gap-2 -mx-4 -mt-8 md:mt-0"><img src="/20230510/logo.svg" alt="/20230510/logo.svg" class="u-featured" loading="lazy" decoding="async"></figure>
       <div class="flex font-semibold gap-1.5"><a rel="author" class="opacity-75 hover:opacity-100 hover:text-primary duration-500 ease-in-out p-author h-card" href="https://az0x01-blog.vercel.app">Az</a>
   <span class="opacity-50">/</span>
-  <a href="/20230805" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-08-05T00:00:00.000Z" itemprop="datePublished">Saturday, Aug 5, 23</time>
-    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-08-05T00:00:00.000Z" itemprop="dateModified">Saturday, Aug 5, 23</time></a></div>
-      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">LVGL 初探</h1>
-      <p itemprop="description" class="p-summary mb-auto hidden">使用 SquareLine Stdio 的 GUI 开发</p></div>
-    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境需求"><a href="#环境需求">环境需求</a></h2>
-<ul><li>ESP32-S3-LCD-EV-BOARD</li>
-<li><a href="https://squareline.io/" rel="nofollow noopener noreferrer external" target="_blank">SquareLine Stdio</a> v1.3.1</li>
-<li>ESP-IDF v5.0.2</li></ul>
-<h2 id="创建项目"><a href="#创建项目">创建项目</a></h2>
-<ol><li>在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕</li>
-<li>打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存</li>
-<li>在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错</li>
-<li>在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改</li>
-<li>在 Export 选项卡中导出项目，先 Creat Template project 然后再 Export UI Files</li></ol>
-<h2 id="修改-menuconfig"><a href="#修改-menuconfig">修改 Menuconfig</a></h2>
-<h3 id="修改字体"><a href="#修改字体">修改字体</a></h3>
-<p>在 ESP-IDF 中打开项目 使用 <code>idf.py menuconfig</code> 命令<br>
-搜索 <code>font 26</code> 选择 LV_FONTMONTSERRAT_26(=n) “Enable Montserrat 26” 启用后保存</p>
-<h3 id="设置-psram-为-120mhz"><a href="#设置-psram-为-120mhz">设置 psram 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 psram</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 SPIRAM_MODE_OCT(=y) "Octal Mode PSRAM"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 进入 Octal Mode PSRAM</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 进入 Set RAM clock speed</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 选择 120MHz clock speed</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-flash-为-120mhz"><a href="#设置-flash-为-120mhz">设置 flash 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 flash</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESPTOOLPY_FLASHFREQ_120M(=n) "120MHz"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 120MHz</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-data-cache-line"><a href="#设置-data-cache-line">设置 data cache line</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 data cache line</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESP_32S3_DATA_CACHE_LINE_64B(=n) "64 Bytes"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 64Bytes</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="开启防撕裂模式"><a href="#开启防撕裂模式">开启防撕裂模式</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 进入 BSP_DISPLAY_LVGL_AVOID_TEAR(=n) "Avoid tearing effect"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 Avoid tearing effect (NEW),进入 LCD</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 开启 Enable to use double frame buffers 以及 Enable to refresh LCD manually</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 进入 Display， 开启 Avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">6.</span><span style="color: #EEFFFF"> 进入 Select LVGL buffer mode，开启 Direct mode</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h2 id="编译烧录"><a href="#编译烧录">编译烧录</a></h2>
-<p>在 ESP-IDF 中使用 <code>idf.py build</code> 编译后进行烧录</p></main>
+  <a href="/20230510" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-05-10T00:00:00.000Z" itemprop="datePublished">Wednesday, May 10, 23</time>
+    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-05-15T00:00:00.000Z" itemprop="dateModified">Monday, May 15, 23</time></a></div>
+      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">小天同学 第三方 APP 开发</h1>
+      </div>
+    <main itemprop="articleBody" class="urara-prose prose e-content"><p>官方 APP 使用不便 于是想开发一个使用更便捷的第三方 APP <a href="https://github.com/aixiao0621/Duoheshui" rel="nofollow noopener noreferrer external" target="_blank">项目地址</a></p>
+<h2 id="app-逆向"><a href="#app-逆向">APP 逆向</a></h2>
+<p>抓包 发现 <code>data</code> 有加密 尝试解密失败，试图寻找源码
+使用工具<a href="https://github.com/hluwa/frida-dexdump" rel="nofollow noopener noreferrer external" target="_blank">frida-dexdump</a> 脱壳，但得到的代码可读性很低，发现有小程序，于是转战</p>
+<h2 id="微信小程序-逆向"><a href="#微信小程序-逆向">微信小程序 逆向</a></h2>
+<blockquote><p>原以为小程序和微信服务器的沟通只是为了拿到手机号明文，于是想要直接使用小程序的请求方式完成登录等全部流程</p></blockquote>
+<ul><li>使用工具 <a href="https://github.com/r3x5ur/unveilr" rel="nofollow noopener noreferrer external" target="_blank">unveilr</a> 直接对<code>__APP__.wxapkg</code>进行解包</li>
+<li>使用<code>微信开发者工具</code>打开解包后的文件并尝试编译，成功 (好运)</li>
+<li>尝试使用 Burpsuite 和 proxifier 对 PC 端小程序抓包，参考了<a href="https://blog.csdn.net/weixin_45031612/article/details/127416319" rel="nofollow noopener noreferrer external" target="_blank">相关教程</a>,寻找登录请求，发现和 APP 抓到的包有相同的加密</li>
+<li>由于解包后的小程序代码有混淆，可读性差，于是直接调试</li>
+<li>小程序的主要 JS 代码位于根目录下，由于其中的函数均声明了 <code>&quot;use strict&quot;</code> 所以先删除</li>
+<li>搜索加密函数 直接使用<code>console.log</code>打印，在调试器里导出为全局变量 就可以进行加解密操作了</li>
+<li>在某些情况下，会提示字符串不是 UTF-8，这时候需要将 <code>\\/</code> 改为 <code>\/</code> 可能还需要增减 <code>=</code> 的数量</li>
+<li>到这里以为已经结束了，抓到的包可以直接解出，但是解密小程序的登录请求后发现里面还有一层加密且无法使用同样的解密方式解密</li>
+<li>解密的微信小程序登录请求包中存在一个名为<code>code</code>的 key 通过查阅微信开发者文档，判断应该是与微信服务器的交流中拿到的，奈何微信的数据包加密十分抽象，没有思路拿到 <code>code</code> 于是思路再次中断</li></ul>
+<h2 id="又回到最初的起点"><a href="#又回到最初的起点">又回到最初的起点🎵</a></h2>
+<ul><li>偶然发现小程序的解密方式对 APP 抓到的包同样适用，于是柳暗花明，拿到验证码登录和打开饮水机的请求方式</li>
+<li>现在只需要复现加解密函数即可，找到 <code>crypto-js</code> 库，发现完全一致，仅需的两个参数：密钥和密钥偏移量，也写在小程序的源码中</li></ul>
+<blockquote><p>上面提到的<code>code</code>应该是微信服务端同时发送到小程序服务端和小程序客户端，一起发送给小程序服务端的还有被加密的手机号，小程序客户端需要用<code>code</code>才能拿到明文手机号</p></blockquote>
+<h2 id="app-开发"><a href="#app-开发">APP 开发</a></h2>
+<ul><li>在伪造请求时要注意发送数据的编码类型</li>
+<li>在新版本中，如果要发送 http 请求，需要在 <code>AndroidManifest.xml</code> 的 <code>application</code> 中 增加 <code>android:usesCleartextTraffic=&quot;true&quot;</code></li>
+<li>可能是由于编码方式的问题 返回的字符串有多余的 <code>\&quot;</code> 和 <code>\\</code> 字符</li>
+<li>在 kotlin 中进行解密操作时，由于 <code>\\/</code> 字符的出现，需要使用三层`<code>对整体字符串进行包裹，使其转为 </code>raw` 后再进行替换操作</li>
+<li>替换字符串时，kotlin 的正则貌似不大好用</li></ul></main>
     <div class="divider mt-4 mb-0"></div>
-      <div><a href="/?tags=IoT" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#IoT
+      <div><a href="/?tags=Android" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#Android
+          </a><a href="/?tags=Rev" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#Rev
           </a></div></div>
   
     </article>
@@ -171,7 +173,7 @@
 						import("../_app/immutable/entry/app.c353dba5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 7],
+							node_ids: [0, 6],
 							data,
 							form: null,
 							error: null

@@ -11,27 +11,32 @@
     </url>
     
         <url>
+            <loc>https://az0x01-blog.vercel.app/20230823</loc>
+            <lastmod>2023-09-19T00:00:00.000Z</lastmod>
+            <priority>0.5</priority>
+        </url>
+        <url>
             <loc>https://az0x01-blog.vercel.app/20230805</loc>
             <lastmod>2023-08-05T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://az0x01-blog.vercel.app/page4</loc>
+            <loc>https://az0x01-blog.vercel.app/20230510</loc>
             <lastmod>2023-05-15T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://az0x01-blog.vercel.app/page2</loc>
+            <loc>https://az0x01-blog.vercel.app/20230401</loc>
             <lastmod>2023-04-01T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://az0x01-blog.vercel.app/page3</loc>
+            <loc>https://az0x01-blog.vercel.app/20230305</loc>
             <lastmod>2023-03-18T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>
         <url>
-            <loc>https://az0x01-blog.vercel.app/page1</loc>
+            <loc>https://az0x01-blog.vercel.app/20230113</loc>
             <lastmod>2023-02-27T00:00:00.000Z</lastmod>
             <priority>0.5</priority>
         </url>

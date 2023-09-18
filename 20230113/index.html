@@ -20,22 +20,22 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.7eeb28a4.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/posts.66901c9e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/icon.91a6a625.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/7.b2e581ef.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/3.f56d1e06.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_layout.b4692dd9.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/post_card.e679ecb5.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>LVGL 初探 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230805">
+		<link rel="modulepreload" href="../_app/immutable/chunks/footer.5e75ecdd.js"><title>通过 Homeassistant 控制继电器 | Az's Blog</title><!-- HEAD_svelte-1592q3p_START --><!-- HEAD_svelte-1592q3p_END --><!-- HEAD_svelte-1kxdj3d_START --><link rel="shortcut icon" href="https://az0x01-blog.vercel.app/favicon.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="https://az0x01-blog.vercel.app/assets/any@180.png" sizes="180x180" type="image/png"><link rel="icon" href="https://az0x01-blog.vercel.app/assets/any@192.png" sizes="192x192" type="image/png"><!-- HEAD_svelte-1kxdj3d_END --><!-- HEAD_svelte-1g590ms_START --><meta name="theme-color"><!-- HEAD_svelte-1g590ms_END --><!-- HEAD_svelte-abrfj_START --><meta name="author" content="Az"><link rel="canonical" href="https://az0x01-blog.vercel.app/20230113">
     
     <meta name="keywords" content="IoT">
-    <meta name="description" content="使用 SquareLine Stdio 的 GUI 开发"><!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
-    <meta property="og:title" content="LVGL 初探">
-    <meta property="og:description" content="使用 SquareLine Stdio 的 GUI 开发">
+    <!-- HEAD_svelte-abrfj_END --><!-- HEAD_svelte-4dky5b_START --><meta property="og:site_name" content="Az's Blog"><meta property="og:locale" content="en-US"><meta property="og:type" content="article">
+    <meta property="og:title" content="通过 Homeassistant 控制继电器">
+    
     <meta property="og:image" content="https://az0x01-blog.vercel.app/assets/maskable@512.png">
       <meta name="twitter:card" content="summary">
     <meta property="article:tag" content="IoT">
-    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230805">
+    <meta property="og:url" content="https://az0x01-blog.vercel.app/20230113">
     <meta property="article:author" content="Az">
-    <meta property="article:published_time" content="2023-08-05T00:00:00.000Z">
-    <meta property="article:modified_time" content="2023-08-05T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
+    <meta property="article:published_time" content="2023-01-13T00:00:00.000Z">
+    <meta property="article:modified_time" content="2023-02-27T00:00:00.000Z"><!-- HEAD_svelte-4dky5b_END -->
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
     <div style="display: contents">
@@ -107,34 +107,28 @@
   <div class="card-body gap-0 "><div class="flex flex-col gap-2">
       <div class="flex font-semibold gap-1.5"><a rel="author" class="opacity-75 hover:opacity-100 hover:text-primary duration-500 ease-in-out p-author h-card" href="https://az0x01-blog.vercel.app">Az</a>
   <span class="opacity-50">/</span>
-  <a href="/20230805" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-08-05T00:00:00.000Z" itemprop="datePublished">Saturday, Aug 5, 23</time>
-    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-08-05T00:00:00.000Z" itemprop="dateModified">Saturday, Aug 5, 23</time></a></div>
-      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">LVGL 初探</h1>
-      <p itemprop="description" class="p-summary mb-auto hidden">使用 SquareLine Stdio 的 GUI 开发</p></div>
-    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境需求"><a href="#环境需求">环境需求</a></h2>
-<ul><li>ESP32-S3-LCD-EV-BOARD</li>
-<li><a href="https://squareline.io/" rel="nofollow noopener noreferrer external" target="_blank">SquareLine Stdio</a> v1.3.1</li>
-<li>ESP-IDF v5.0.2</li></ul>
-<h2 id="创建项目"><a href="#创建项目">创建项目</a></h2>
-<ol><li>在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕</li>
-<li>打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存</li>
-<li>在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错</li>
-<li>在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改</li>
-<li>在 Export 选项卡中导出项目，先 Creat Template project 然后再 Export UI Files</li></ol>
-<h2 id="修改-menuconfig"><a href="#修改-menuconfig">修改 Menuconfig</a></h2>
-<h3 id="修改字体"><a href="#修改字体">修改字体</a></h3>
-<p>在 ESP-IDF 中打开项目 使用 <code>idf.py menuconfig</code> 命令<br>
-搜索 <code>font 26</code> 选择 LV_FONTMONTSERRAT_26(=n) “Enable Montserrat 26” 启用后保存</p>
-<h3 id="设置-psram-为-120mhz"><a href="#设置-psram-为-120mhz">设置 psram 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 psram</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 SPIRAM_MODE_OCT(=y) "Octal Mode PSRAM"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 进入 Octal Mode PSRAM</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 进入 Set RAM clock speed</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 选择 120MHz clock speed</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-flash-为-120mhz"><a href="#设置-flash-为-120mhz">设置 flash 为 120MHz</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 flash</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESPTOOLPY_FLASHFREQ_120M(=n) "120MHz"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 120MHz</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="设置-data-cache-line"><a href="#设置-data-cache-line">设置 data cache line</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 data cache line</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 选择 ESP_32S3_DATA_CACHE_LINE_64B(=n) "64 Bytes"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 64Bytes</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h3 id="开启防撕裂模式"><a href="#开启防撕裂模式">开启防撕裂模式</a></h3>
-<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" md="true"><div class="language-id">md</div><div class='code-container'><code><div class='line'><span style="color: #89DDFF">1.</span><span style="color: #EEFFFF"> 搜索 avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">2.</span><span style="color: #EEFFFF"> 进入 BSP_DISPLAY_LVGL_AVOID_TEAR(=n) "Avoid tearing effect"</span></div><div class='line'><span style="color: #89DDFF">3.</span><span style="color: #EEFFFF"> 选择 Avoid tearing effect (NEW),进入 LCD</span></div><div class='line'><span style="color: #89DDFF">4.</span><span style="color: #EEFFFF"> 开启 Enable to use double frame buffers 以及 Enable to refresh LCD manually</span></div><div class='line'><span style="color: #89DDFF">5.</span><span style="color: #EEFFFF"> 进入 Display， 开启 Avoid tearing effect</span></div><div class='line'><span style="color: #89DDFF">6.</span><span style="color: #EEFFFF"> 进入 Select LVGL buffer mode，开启 Direct mode</span></div></code></div></pre><!-- HTML_TAG_END -->
-<h2 id="编译烧录"><a href="#编译烧录">编译烧录</a></h2>
-<p>在 ESP-IDF 中使用 <code>idf.py build</code> 编译后进行烧录</p></main>
+  <a href="/20230113" class="u-url u-uid swap group/time"><time class="group-hover/time:opacity-0 font-semibold opacity-75 duration-500 ease-in-out mr-auto dt-published" datetime="2023-01-13T00:00:00.000Z" itemprop="datePublished">Friday, Jan 13, 23</time>
+    <time class="opacity-0 group-hover/time:opacity-100 font-semibold text-primary duration-500 ease-in-out mr-auto dt-updated" datetime="2023-02-27T00:00:00.000Z" itemprop="dateModified">Monday, Feb 27, 23</time></a></div>
+      <h1 itemprop="name headline" class="card-title text-3xl mb-8 p-name">通过 Homeassistant 控制继电器</h1>
+      </div>
+    <main itemprop="articleBody" class="urara-prose prose e-content"><h2 id="环境安装"><a href="#环境安装">环境安装</a></h2>
+<ol><li>使用<a href="https://github.com/AlexxIT/HassWP" rel="nofollow noopener noreferrer external" target="_blank">HassWP</a>作为 homeassistant 客户端。</li>
+<li>使用 ESPHome 作为连接 ESP8266 与 HA 的平台，由于 HassWP 并不是 HA 的完全体，所以这里需要安装完整的 ESPHome，这里选择将其部署在 Liunx 虚拟机上。</li>
+<li>在安装 ESPHome 前请确保 Liunx 的 python 处于较高版本，这里使用了 3.11.1 版本。</li>
+<li>使用 <code>pip3 install esphome</code> 命令安装 ESPHome;
+使用 <code>ln -s /home/coolcall/.local/bin/esphome /usr/local/bin/esphome</code> 创建<del>软连接</del> ；
+使用 <code>sudo esphome dashboard config/</code> 运行。</li></ol>
+<h2 id="esp8266-接入-esphome"><a href="#esp8266-接入-esphome">ESP8266 接入 ESPHome</a></h2>
+<ol><li>在 ESPHome 的管理页面中（建议在 windows 系统下使用 Liunx IP 地址的 6052 端口号访问，虚拟机使用桥接模式），点击<code>NEW DEVICE</code> 添加新设备，输入<code>name</code> ，在选择<code>ESP8266</code> 并出现<code>Configuration created!</code>后，先选择<code>SKIP</code>，然后在页面右上角的<code>SECRETS</code>处配置网络并保存。</li>
+<li>完成后打开<code>EDIT</code>并进行<code>INSTALL</code>，选择第四个，这里我选择使用 ESP8266Flasher 刷写下载的<code>.bin</code>（需要安装 CH341 驱动），当然你也可以选择使用 ESPHome 提供的 web 页面进行刷写。这里需要下载编译链，请保持良好的网络环境并等待一段时间。</li>
+<li>刷写成功后，ESP8266 就可以连接到 ESPHome 了，页面将会显示固件上线，再次点击<code>EDIT</code>，在<code>captive_portal:</code>后添加以下代码：</li></ol>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'><span style="color: #F07178">web_server</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #F07178">port</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #F78C6C">80</span></div><div class='line'></div><div class='line'><span style="color: #F07178">switch</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">platform</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">gpio</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">pin</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">GPIO0</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">name</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">书房灯</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">id</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">relay2</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">inverted</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #FF9CAC">True</span></div><div class='line'><span style="color: #EEFFFF">    </span></div><div class='line'><span style="color: #F07178">binary_sensor</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">  </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">platform</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">gpio</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">pin</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">GPIO2</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">name</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">press_switch_lib1</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">device_class</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">opening</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">filters</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">      </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">delayed_on_off</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">100ms</span><span style="color: #EEFFFF"> </span><span style="color: #546E7A">#消抖</span></div><div class='line'><span style="color: #EEFFFF">    </span><span style="color: #F07178">on_state</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF">  </span><span style="color: #546E7A">#当这个二进制传感器状态改变的时候，触发 gpio0</span></div><div class='line'><span style="color: #EEFFFF">      </span><span style="color: #F07178">then</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #EEFFFF">        </span><span style="color: #89DDFF">-</span><span style="color: #EEFFFF"> </span><span style="color: #F07178">switch.toggle</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">relay2</span></div></code></div></pre><!-- HTML_TAG_END -->
+<p>再次<code>INSTALL</code>时即可选择第一个选项刷写。</p>
+<h2 id="在-ha-中添加固件"><a href="#在-ha-中添加固件">在 HA 中添加固件</a></h2>
+<ol><li>在 HA 的配置面板中选择设备与服务，在添加集成中搜索 ESPHome，主机地址需要填写上文中的<code>NAME</code>，在输入 key 后即可添加成功。（key 可以在刷写的<code>.yaml</code>文件中找到）</li></ol>
+<h2 id="其他"><a href="#其他">其他</a></h2>
+<p>WIFI 省电模式：</p>
+<!-- HTML_TAG_START --><pre class="shiki material-default" style="background-color: #263238; color: #EEFFFF" yaml="true"><div class="language-id">yaml</div><div class='code-container'><code><div class='line'><span style="color: #F07178">wifi</span><span style="color: #89DDFF">:</span></div><div class='line'><span style="color: #89DDFF">  </span><span style="color: #546E7A"># ...</span></div><div class='line'><span style="color: #F07178">power_save_mode</span><span style="color: #89DDFF">:</span><span style="color: #EEFFFF"> </span><span style="color: #C3E88D">light</span></div></code></div></pre><!-- HTML_TAG_END --></main>
     <div class="divider mt-4 mb-0"></div>
       <div><a href="/?tags=IoT" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">#IoT
           </a></div></div>
@@ -171,7 +165,7 @@
 						import("../_app/immutable/entry/app.c353dba5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 7],
+							node_ids: [0, 3],
 							data,
 							form: null,
 							error: null
