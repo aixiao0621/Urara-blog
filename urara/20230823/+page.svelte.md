@@ -4,6 +4,7 @@ image: '/20230823/penup.webp'
 alt: 'Az'
 created: 2023-08-23
 updated: 2023-09-19
+summary: '以及自己的第一个 CVE 编号'
 tags:
   - 'PWN'
 ---
