@@ -4,7 +4,7 @@ image: '/20230823/penup.webp'
 alt: 'Az'
 created: 2023-08-23
 updated: 2023-09-19
-summary: '以及自己的第一个 CVE 编号'
+summary: '以及水到的第一个 CVE 编号'
 tags:
   - 'PWN'
 ---
@@ -119,4 +119,4 @@ exploit_WifiGuestSet()
 
 ## 照猫画虎
 
-> 拿到了第一个 CVE 编号 `CVE-2023-42320` 
+> 水到了第一个 CVE 编号 `CVE-2023-42320` 
