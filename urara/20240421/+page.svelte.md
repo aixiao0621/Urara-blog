@@ -78,7 +78,7 @@ void Java_com_symbolic_pitchlab_PitchLabNative_appPaused(JNIEnv *env, jclass cla
 }
 ```
 
-4. 在 app 文件夹下的 build.gradle.kts 中增加 externalNativeBuild
+4.在 app 文件夹下的 build.gradle.kts 中增加 externalNativeBuild
 
 ```kotlin
     kotlinOptions {
@@ -95,9 +95,7 @@ void Java_com_symbolic_pitchlab_PitchLabNative_appPaused(JNIEnv *env, jclass cla
     }
 ```
 
-5. 构建项目，将构建出的 apk 解压，将其中的 so 文件放入原 apk 中重新签名安装即可
-
-
+5.构建项目，将构建出的 apk 解压，将其中的 so 文件放入原 apk 中重新签名安装即可
 
 ## Android so 文件
 
@@ -129,7 +127,6 @@ void Java_com_symbolic_pitchlab_PitchLabNative_appPaused(JNIEnv *env, jclass cla
    - **String Table (.strtab and .shstrtab)**：   - `.strtab`节包含了符号表中的名字。   - `.shstrtab`节则包含了节头表中的名字。
    - **Debugging Information**：    - 包含用于调试的额外信息，如源码行号、源代码文件名称等。这部分通常不会包含在发布版的`.so`文件中。每个部分都适当排列和链接，以确保共享库能够被正确地加载和链接。像 GNU Binutils 这样的工具组可以用来检查和操作 ELF 文件，包括`readelf`和`objdump`等。Android 开发使用的 NDK 提供了这些工具的版本。在开发过程中，你可能需要依赖这些工具来诊断问题或更详细地理解你的共享库。
 
-
 需要注意的问题：
 
 1. **NDK 版本选择**
@@ -141,18 +138,16 @@ void Java_com_symbolic_pitchlab_PitchLabNative_appPaused(JNIEnv *env, jclass cla
    .so 文件可以依赖于不同的 C++ 运行时，静态编译或者动态加载。混合使用不同版本的 C++ 运行时可能导致很多奇怪的 crash，是应该避免的。作为一个经验法则，当只有一个.so 文件时，静态编译 C++ 运行时是没问题的，否则当存在多个.so 文件时，应该让所有的.so 文件都动态链接相同的 C++ 运行时。
    这意味着当引入一个新的预编译.so 文件，而且项目中还存在其他的.so 文件时，我们需要首先确认新引入的.so 文件使用的 C++ 运行时是否和已经存在的.so 文件一致。
 
-
-
 ## Java 层面的 Native 调用
 
-渲染层位于 [ActivityVisualiser.java](..\code\pitchlab\app\src\main\java\com\symbolic\pitchlab\ActivityVisualiser.java) 类，通过将 jadx 代码复制并作简单 rename 处理到项目下，梳理出依赖类
+渲染层位于 [ActivityVisualiser.java] 类，通过将 jadx 代码复制并作简单 rename 处理到项目下，梳理出依赖类
 
 可以看到所有的 native 调用
 ![image-20240403143314294](./image-20240403143314294.png)
 
 ### processStreamedSamples
 
-在  [processStream.java](..\code\pitchlab\app\src\main\java\com\symbolic\pitchlab\processStream.java) 类中存在下面方法：
+在  [processStream.java] 类中存在下面方法：
 
 ```java
     @Override // com.symbolic.pitchlab.InterfaceC0940bn
@@ -224,8 +219,6 @@ read 方法返回的值是实际读取的数据长度。如果返回值小于请
 
 *可以判断 PitchLabNative.processStreamedSamples(sArr, i, i2); 中的三个传参如上*
 
-
-
 ### (int) getNumViews
 
 ```java
@@ -269,8 +262,6 @@ Java 层用于在创建`AlertDialog.Builder` 对话框时根据 PitchLabNative.g
 ```
 
 PitchLabNative.getViewName(i2) 传参 由 PitchLabNative.getNumViews() 获取的 int 返回对应的 (string) Name
-
-
 
 ### setAnalysisParameters
 
@@ -335,8 +326,6 @@ PitchLabNative.setAnalysisParameters(
 );
 ```
 
-
-
 ### surfaceCreated
 
 Java 层调用：
@@ -354,7 +343,6 @@ Java 层调用：
         PitchLabNative.surfaceCreated();
     }
 ```
-
 
 ### surfaceChanged
 
