@@ -8,6 +8,4 @@ flags:
   - unlisted
 ---
 
-Welcome to Urara!
-
-## About me
+Az
