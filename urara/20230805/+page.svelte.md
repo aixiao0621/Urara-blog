@@ -4,7 +4,7 @@ image: ''
 alt: 'Az'
 created: 2023-08-05
 updated: 2023-08-05
-summary: '使用 SquareLine Stdio 的 GUI 开发'
+summary: '使用 SquareLine Studio 的 GUI 开发'
 tags:
   - 'IoT'
 ---
@@ -12,12 +12,12 @@ tags:
 ## 环境需求
 
 * ESP32-S3-LCD-EV-BOARD
-* [SquareLine Stdio](https://squareline.io/) v1.3.1
+* [SquareLine Studio](https://squareline.io/) v1.3.1
 * ESP-IDF v5.0.2
 
 ## 创建项目
 
-1. 在 SquareLine Stdio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕
+1. 在 SquareLine Studio 的欢迎菜单中选择 Example，选择任意一个示例项目，点击 creat，待相关文件加载完毕
 2. 打开 flie 选项卡的 Project setting 修改 BOARD GROUP 为 Espressif，选择 开发板型号并保存
 3. 在 Font Manager 选项卡的 CREATFONT 下进行 modify 以防报错
 4. 在 Inspector 选项卡的 STYLE(MAIN) 下 确定项目的 Text Font，以便稍后修改

@@ -1,7 +1,8 @@
 ---
-title: '复活吧我的 Polr'
+title: '复活吧 我的 Polr'
 alt: 'Az'
 image: '/20240502/main.webp'
+summary: ''
 created: 2024-05-02
 updated: 2024-12-04
 tags:
@@ -18,32 +19,32 @@ tags:
 ```bash
 .
 ├── camera
-│   └── PLCamera1
-│       ├── camera-cover.png
-│       ├── camera-photo-shadow.png
-│       └── cover.png
+│     └── PLCamera1
+│         ├── camera-cover.png
+│         ├── camera-photo-shadow.png
+│         └── cover.png
 ├── camera.json
 ├── default.json
 ├── images
-│   └── lens-cover1.png
+│     └── lens-cover1.png
 ├── of
-│   ├── Color600.zip
-│   ├── Frame-1.zip
-│   ├── MixPhoto.zip
-│   └── TimeZero.zip
+│     ├── Color600.zip
+│     ├── Frame-1.zip
+│     ├── MixPhoto.zip
+│     └── TimeZero.zip
 ├── of.json
 ├── paper
-│   ├── PLPaper1
-│   │   ├── cover.png
-│   │   ├── desc-en.png
-│   │   ├── desc-zh.png
-│   │   ├── display-cover-preview.png
-│   │   ├── display-cover.png
-│   │   ├── sample-1.png
-│   │   ├── sample ...
-│   └── PLPaper2
-│       ├── cover.png
-│       ├── ...
+│     ├── PLPaper1
+│     │     ├── cover.png
+│     │     ├── desc-en.png
+│     │     ├── desc-zh.png
+│     │     ├── display-cover-preview.png
+│     │     ├── display-cover.png
+│     │     ├── sample-1.png
+│     │     ├── sample ...
+│     └── PLPaper2
+│         ├── cover.png
+│         ├── ...
 └── paper.json
 ```
 
@@ -52,16 +53,16 @@ tags:
 ```bash
 .
 ├── BokehNoDepth
-│   └── BokehNoDepth.oflua
+│     └── BokehNoDepth.oflua
 ├── FilmGrains2.0
-│   ├── FilmGrains2.0.oflua
-│   ├── noise.png
-│   └── noise2.png
+│     ├── FilmGrains2.0.oflua
+│     ├── noise.png
+│     └── noise2.png
 ├── TZ160D.png
 ├── TZ160DDA.png
 ├── Thumbs.db	// 缓存文件，忽略
 ├── backblur
-│   └── backblur.oflua
+│     └── backblur.oflua
 └── effect0.ofeffect
 ```
 

@@ -69,7 +69,7 @@ tags:
 
   执行 `cp -rf ./webroot_ro/* ./var/webroot/` 即可正常运行
 
-## 使用 Poc 攻击
+## Poc
 
 ```python
 import requests
