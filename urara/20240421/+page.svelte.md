@@ -3,7 +3,7 @@ title: 'PitchLab 的重生之路'
 alt: 'Az'
 image: ''
 created: 2024-04-21
-updated: 2024-04-21
+updated: 2025-04-21
 summary: 'PitchLab-rev'
 tags:
   - 'Android'
@@ -461,4 +461,7 @@ public class openGLSurface implements GLSurfaceView.Renderer {
 
 ## openGL 启动
 
-目前可以正常 Log 出来频率了，但 openGL 咕咕了，前面的区域以后再来探索吧！
+目前可以正常 Log 出来频率了，~~但 openGL 咕咕了，前面的区域以后再来探索吧！~~
+
+202504 update：  
+参考了[pitchdiagram](https://pitchdiagram.com/)的实现，使用 openGL ES 在 so 层面实现了一个 demo，还需后续完善
