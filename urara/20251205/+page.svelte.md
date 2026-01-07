@@ -4,7 +4,7 @@ alt: 'Az'
 image: ''
 summary: ''
 created: 2025-12-04
-updated: 2024-12-31
+updated: 2025-12-31
 tags:
   - 'IoT'
   - 'Rev'

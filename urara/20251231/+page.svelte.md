@@ -4,7 +4,7 @@ alt: 'Az'
 image: ''
 summary: ''
 created: 2025-12-15
-updated: 2024-12-31
+updated: 2025-12-31
 tags:
   - 'IoT'
 ---
@@ -35,7 +35,7 @@ Libc: glibc
 
 ## 3. 构建过程
 
-### 3.1 尝试一：使用最新 strace（6.18）
+### 3.1 使用最新 strace（6.18）
 
 最新版本，已合入 LoongArch 支持，理论上兼容新内核，配置命令如下：
 
@@ -75,7 +75,7 @@ error: initialized field overwritten [-Werror=override-init]
 
 ---
 
-### 3.2 尝试二：降级 strace 版本（6.9 / 6.2.9）
+### 3.2 降级 strace 版本（6.9 / 6.2.9）
 
 尝试避开最新 LoongArch KVM 改动，最小化 ABI 不兼容性：
 
