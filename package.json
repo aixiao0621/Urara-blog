@@ -21,7 +21,7 @@
     "dev:parallel": "npm-run-all -p -r tsc:watch urara:watch \"kit:dev {@} \" --",
     "dev": "npm-run-all -s tsc \"dev:parallel {@} \" --",
     "sw:generate": "node scripts/generate-sw.js",
-    "unocss:build": "npx unocss \"src/**/*\" -c unocss.config.ts -o src/app.uno.css",
+    "unocss:build": "node scripts/generate-unocss.js",
     "build": "npm-run-all -s tsc urara:build unocss:build kit:build sw:generate clean",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
