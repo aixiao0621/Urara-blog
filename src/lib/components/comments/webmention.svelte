@@ -80,14 +80,15 @@
     </p>
     <button
       class="btn btn-ghost btn-sm float-right"
+      aria-label="toggle sort order"
       on:click={() => {
         sortDirUp = !sortDirUp
         reset()
       }}>
       {#if sortDirUp === true}
-        <span class="i-heroicons-outline-sort-ascending" />
+        <span class="i-heroicons-outline-sort-ascending" ></span>
       {:else}
-        <span class="i-heroicons-outline-sort-descending" />
+        <span class="i-heroicons-outline-sort-descending" ></span>
       {/if}
     </button>
   </div>
@@ -162,6 +163,7 @@
           loaded = false
           load()
         }}
+        aria-label="load more webmentions"
         class="btn btn-primary btn-block">
         LOAD
       </button>
@@ -169,7 +171,7 @@
       <div class="divider mt-0 -mb-2">END</div>
     {/if}
   {:else}
-    <button id="webmention-loading" class="btn btn-lg btn-block flex btn-ghost loading" />
+    <button id="webmention-loading" class="btn btn-lg btn-block flex btn-ghost loading"  aria-label="loading webmentions"></button>
   {/if}
   {#if config?.form === true}
     <form id="webmention-form" method="post" action="https://webmention.io/{config.username}/webmention">

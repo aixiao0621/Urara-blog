@@ -38,7 +38,9 @@
   class:group={preview}
   class:image-full={preview && post.type === 'article' && post.image}
   class:before:!rounded-none={preview && post.image}
-  class="h-entry card bg-base-100 rounded-none md:rounded-box md:shadow-xl overflow-hidden z-10">
+  class="h-entry card bg-base-100 rounded-xl md:rounded-box shadow-xl hover:shadow-2xl transition-shadow transform-gpu overflow-hidden z-10"
+  class:hover:-translate-y-1={preview}
+  class:hover:scale-[1.01]={preview}>
   {#if !preview && postConfig.bridgy}
     <div id="bridgy" class="hidden">
       {#each post.flags?.some( flag => flag.startsWith('bridgy') ) ? post.flags.flatMap( flag => (flag.startsWith('bridgy') ? flag.slice(7) : []) ) : [...(postConfig.bridgy.post ?? []), ...(postConfig.bridgy[post.type] ?? [])] as target}
@@ -109,7 +111,7 @@
       {/if}
     </main>
     {#if !preview && post.tags}
-      <div class="divider mt-4 mb-0" />
+      <div class="divider mt-4 mb-0" ></div>
       <div>
         {#each post.tags as tag}
           <a href="/?tags={tag}" class="btn btn-sm btn-ghost normal-case mt-2 mr-2 p-category">

@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  export const prerender = true
+  export const prerender = false
 </script>
 
 <script lang="ts">
@@ -55,8 +55,9 @@
     <ul dir="ltr" id="toc-list-root">
       {#each toc as { depth, title, slug }}
         <li id={`toc-item-${slug}`} class="flex flex-col">
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <span
+          <button
+            type="button"
+            aria-label={`Go to ${title}`}
             dir="ltr"
             on:click={() =>
               // @ts-ignore Object is possibly 'null'. ts(2531)
@@ -72,7 +73,7 @@
             class:pl-16={depth === 5}
             class:pl-20={depth === 6}>
             {title}
-          </span>
+          </button>
         </li>
       {/each}
     </ul>

@@ -11,7 +11,7 @@
     rel="noopener noreferrer external"
     target="_blank"
     class="ml-auto flex-none flex rounded-badge bg-base-200 hover:bg-base-300 transition-all gap-2 px-4 u-in-reply-to">
-    <span class="i-heroicons-outline-reply my-auto !w-4 !h-4" />
+    <span class="i-heroicons-outline-reply my-auto !w-4 !h-4" ></span>
     {in_reply_to}
   </a>
 </div>

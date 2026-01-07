@@ -1,6 +1,7 @@
 <script lang="ts">
   import { browser, dev } from '$app/environment'
   import { fly } from 'svelte/transition'
+  import { DEFAULT_FLY, LONG_FLY } from '$lib/utils/transitions'
   import { site } from '$lib/config/site'
   import { theme } from '$lib/config/general'
   import { title as storedTitle } from '$lib/stores/title'
@@ -57,29 +58,27 @@
   class="fixed z-50 w-full transition-all duration-500 ease-in-out border-b-2 border-transparent max-h-[4.125rem] {scrollY >
     32 && 'backdrop-blur !border-base-content/10 bg-base-100/30 md:bg-base-200/30'}">
   {#if !search}
-    <div in:fly={{ x: -50, duration: 300, delay: 300 }} out:fly={{ x: -50, duration: 300 }} class="navbar">
+    <div in:fly={{ ...LONG_FLY, delay: 220 }} out:fly={{ ...LONG_FLY }} class="navbar">
       <div class="navbar-start">
         {#if headerConfig.nav}
-          <Nav {path} {title} {pin} {scrollY} nav={headerConfig.nav} />
+          <Nav {path} {title} {pin} {scrollY} nav={headerConfig.nav} ></Nav>
         {/if}
-        <a href="/" class="btn btn-ghost normal-case text-lg">{site.title}</a>
+        <a href="/" class="btn btn-ghost normal-case text-lg relative group overflow-hidden">
+          <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></span>
+          <span class="relative transform transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">{site.title}</span>
+        </a>
       </div>
       <div class="navbar-end">
         {#if headerConfig.search}
           <button aria-label="search" on:click={() => (search = !search)} tabindex="0" class="btn btn-square btn-ghost">
-            <span class="i-heroicons-outline-search" />
+            <span class="i-heroicons-outline-search" ></span>
           </button>
         {/if}
         <div id="change-theme" class="dropdown dropdown-end">
-          <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-          <!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
-          <div tabindex="0" class="btn btn-square btn-ghost">
-            <span class="i-heroicons-outline-color-swatch" />
-          </div>
-          <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-          <!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
+          <button type="button" aria-label="change theme" class="btn btn-square btn-ghost">
+            <span class="i-heroicons-outline-color-swatch" ></span>
+          </button>
           <ul
-            tabindex="0"
             class="flex flex-nowrap shadow-2xl menu dropdown-content bg-base-100 text-base-content rounded-box w-52 p-2 gap-2 overflow-y-auto max-h-[21.5rem]"
             class:hidden={!pin}>
             {#each theme as { name, text }}
@@ -97,7 +96,7 @@
                 </p>
                 <div class="grid grid-cols-4 gap-0.5 m-auto">
                   {#each ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-neutral'] as bg}
-                    <div class={`${bg} w-1 h-4 rounded-btn`} />
+                    <div class={`${bg} w-1 h-4 rounded-btn`} ></div>
                   {/each}
                 </div>
               </button>
@@ -107,10 +106,10 @@
       </div>
     </div>
   {:else}
-    <div in:fly={{ x: 50, duration: 300, delay: 300 }} out:fly={{ x: 50, duration: 300 }} class="navbar">
+    <div in:fly={{ ...LONG_FLY, delay: 220 }} out:fly={{ ...LONG_FLY }} class="navbar">
       <Search />
-      <button on:click={() => (search = !search)} tabindex="0" class="btn btn-square btn-ghost">
-        <span class="i-heroicons-outline-x" />
+      <button aria-label="close search" on:click={() => (search = !search)} tabindex="0" class="btn btn-square btn-ghost">
+        <span class="i-heroicons-outline-x" ></span>
       </button>
     </div>
   {/if}
@@ -128,10 +127,10 @@
   class:opacity-100={scrollY}>
   <div
     class="radial-progress text-accent transition-all duration-500 ease-in-out group-hover:text-accent-focus col-start-1 row-start-1"
-    style={`--size:4rem; --thickness: 0.25rem; --value:${percent};`} />
+    style={`--size:4rem; --thickness: 0.25rem; --value:${percent};`} ></div>
   <div
     class:border-transparent={percent > 95}
     class="border-4 border-base-content/10 group-hover:border-transparent col-start-1 row-start-1 rounded-full w-full h-full p-4 grid duration-500 ease-in-out">
-    <span class="i-heroicons-solid-chevron-up !w-6 !h-6" />
+    <span class="i-heroicons-solid-chevron-up !w-6 !h-6" ></span>
   </div>
 </button>

@@ -34,6 +34,6 @@
     <Card {post}>
       <slot />
     </Card>
-    <Footer sticky={true} />
+    <Footer sticky={true} ></Footer>
   </div>
 </div>

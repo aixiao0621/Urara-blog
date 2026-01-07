@@ -42,7 +42,7 @@ const render = (posts = genPosts({ postHtml: true, postLimit: feed.limit, filter
   }))
 })
 
-export const prerender = true
+export const prerender = false
 export const trailingSlash = 'never'
 export const GET: RequestHandler = async () =>
   json(render(), {

@@ -12,13 +12,13 @@
   class="alert flex-col shadow-inner my-4">
   <div class="mr-auto">
     {#if status === 'success'}
-      <span class="i-heroicons-outline-check-circle" />
+      <span class="i-heroicons-outline-check-circle" ></span>
     {:else if status === 'warning'}
-      <span class="i-heroicons-outline-exclamation-circle" />
+      <span class="i-heroicons-outline-exclamation-circle" ></span>
     {:else if status === 'error'}
-      <span class="i-heroicons-outline-x-circle" />
+      <span class="i-heroicons-outline-x-circle" ></span>
     {:else}
-      <span class="i-heroicons-outline-information-circle" />
+      <span class="i-heroicons-outline-information-circle" ></span>
     {/if}
     <div>
       <div class:font-bold={description}>{title}</div>

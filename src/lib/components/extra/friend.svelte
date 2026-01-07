@@ -6,7 +6,7 @@
   </script>
   
   {#if friend.id === 'footer'}
-    <Footer rounded={true} class="p-4 md:p-8" />
+    <Footer rounded={true} class="p-4 md:p-8" ></Footer>
   {:else if friend.html}
     <a id={friend.id} rel={friend.rel} href={friend.link} class="h-card u-url">
       {@html friend.html}

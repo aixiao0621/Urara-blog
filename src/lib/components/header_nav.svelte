@@ -6,15 +6,12 @@
   export let pin: boolean
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
 <div class="dropdown lg:hidden">
-  <label for="navbar-dropdown" tabindex="0" class="btn btn-square btn-ghost">
-    <span class="i-heroicons-outline-menu-alt-1" />
-  </label>
+  <button type="button" aria-controls="navbar-dropdown" aria-expanded="false" aria-label="open navigation" class="btn btn-square btn-ghost">
+    <span class="i-heroicons-outline-menu-alt-1" ></span>
+  </button>
   <ul
     id="navbar-dropdown"
-    tabindex="0"
     class:hidden={!pin}
     class="menu menu-compact dropdown-content bg-base-100 text-base-content shadow-lg rounded-box min-w-max max-w-52 p-2
     ">
@@ -23,12 +20,12 @@
         <li>
           <a class:font-bold={link === path} href={link}>{text}</a>
         </li>
-      {:else if children}
-        <li tabindex="0">
-          <span class:font-bold={children.some(({ link }) => link === path)} class="justify-between gap-1 max-w-[13rem]">
+        {:else if children}
+        <li>
+          <button type="button" aria-haspopup="true" aria-label={`Open submenu ${text}`} class:font-bold={children.some(({ link }) => link === path)} class="justify-between gap-1 max-w-[13rem]">
             {text}
-            <span class="i-heroicons-solid-chevron-right mr-2" />
-          </span>
+            <span class="i-heroicons-solid-chevron-right mr-2" ></span>
+          </button>
           <ul class="bg-base-100 text-base-content shadow-lg p-2">
             {#each children as { text, link }}
               <li>
@@ -54,14 +51,13 @@
         <li>
           <a class="!rounded-btn" class:font-bold={link === path} href={link}>{text}</a>
         </li>
-      {:else if children}
+        {:else if children}
         <li>
-          <span class:font-bold={children.some(({ link }) => link === path)} class="!rounded-btn gap-1">
+          <button type="button" aria-haspopup="true" aria-label={`Open submenu ${text}`} class:font-bold={children.some(({ link }) => link === path)} class="!rounded-btn gap-1">
             {text}
-            <span class="i-heroicons-solid-chevron-down -mr-1" />
-          </span>
-          <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-          <ul tabindex="0" class="menu rounded-box bg-base-100 text-base-content shadow-lg p-2">
+            <span class="i-heroicons-solid-chevron-down -mr-1" ></span>
+          </button>
+          <ul class="menu rounded-box bg-base-100 text-base-content shadow-lg p-2">
             {#each children as { text, link }}
               <li>
                 <a class:font-bold={link === path} href={link}>{text}</a>

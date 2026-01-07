@@ -16,8 +16,9 @@
     {#if config.use.length > 1}
       <div class="tabs w-full mb-8" class:tabs-boxed={config?.['style'] === 'boxed'}>
         {#each config.use as name}
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <span
+          <button
+            type="button"
+            aria-label={name}
             on:click={() => {
               currentComment = toSnake(name)
               localStorage.setItem('comment', toSnake(name))
@@ -27,7 +28,7 @@
             class:tab-lifted={config?.['style'] === 'lifted'}
             class:tab-active={currentComment === toSnake(name)}>
             {name}
-          </span>
+          </button>
         {/each}
       </div>
     {/if}
